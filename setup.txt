@@ -1,0 +1,11 @@
+//How to push
+git init
+git commit -m "something"
+git remote add origin https://github.com/SnapDragon54/FigTure
+git push -u origin master
+
+//How to pull
+git init
+git remote add origin https://github.com/SnapDragon54/FigTure
+git fetch orgin
+git checkout origin/master -- C:\Xampp_Project\htdocs\Web_Programming\Figture
