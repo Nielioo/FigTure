@@ -9,4 +9,4 @@ git push -u origin master
 git init
 git remote add origin https://github.com/SnapDragon54/FigTure.git
 git fetch origin
-git checkout origin/master -- C:\Xampp_Project\htdocs\Web_Programming\Figture
+git checkout origin/master -- /c/Xampp_Project/htdocs/Web_Programming/Figture
