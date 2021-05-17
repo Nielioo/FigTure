@@ -1,5 +1,6 @@
 //How to push
 git init
+git add
 git commit -m "something"
 git remote add origin https://github.com/SnapDragon54/FigTure
 git push -u origin master
