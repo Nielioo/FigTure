@@ -2,11 +2,11 @@
 git init
 git add
 git commit -m "something"
-git remote add origin https://github.com/SnapDragon54/FigTure
+git remote add origin https://github.com/SnapDragon54/FigTure.git
 git push -u origin master
 
 //How to pull
 git init
-git remote add origin https://github.com/SnapDragon54/FigTure
-git fetch orgin
+git remote add origin https://github.com/SnapDragon54/FigTure.git
+git fetch origin
 git checkout origin/master -- C:\Xampp_Project\htdocs\Web_Programming\Figture
