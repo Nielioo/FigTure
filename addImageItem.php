@@ -40,7 +40,7 @@ require_once("db_controller.php");
         $query = $connection->prepare("INSERT INTO `image_file`(`gambar`) VALUES (?)");
         $null = NULL;
         $query->bind_param("b", $null);
-        $result = $query->send_long_data(0, $gambar_data);
+        $query->send_long_data(0, $gambar_data);
         $query->execute() or die(mysqli_error($connection));
 
         // $stmt = $connection->prepare("INSERT INTO image_file (gambar) VALUES(?)");
@@ -65,3 +65,10 @@ require_once("db_controller.php");
 </body>
 
 </html>
+
+<!-- Error handling
+Syntax error in MariaDB -> Use backticks and single quote in SQL syntax
+Column NULL -> Check parameter number in send_long_data to match blob in bind_param, index starts at 0
+Damaged file -> Remove mysqli_real_escape_string
+
+ -->
