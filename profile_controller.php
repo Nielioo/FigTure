@@ -1,5 +1,5 @@
 <?php
 
-include_once("db_controller.php");
+require_once("db_controller.php");
 
 ?>
