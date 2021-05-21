@@ -65,10 +65,3 @@ require_once("db_controller.php");
 </body>
 
 </html>
-
-<!-- Error handling
-Syntax error in MariaDB -> Use backticks and single quote in SQL syntax
-Column NULL -> Check parameter number in send_long_data to match blob in bind_param, index starts at 0
-Damaged file -> Remove mysqli_real_escape_string
-
- -->
