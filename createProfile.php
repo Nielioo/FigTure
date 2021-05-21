@@ -57,14 +57,15 @@ require_once("profile_controller.php");
     <?php
     if (isset($_POST['create'])) {
         $user_id = $_POST['user_id'];
-        $profile_picture = file_get_contents($_FILES['profile_picture']['tmp_name']);
+        //$profile_picture = file_get_contents($_FILES['profile_picture']['tmp_name']);
         $nama = $_POST['nama'];
         $email = $_POST['email'];
         $password = $_POST['password'];
         $tipe_user = $_POST['tipe_user'];
 
-        createProfile($user_id, $profile_picture, $nama, $email, $password, $tipe_user);
-        echo $profile_picture;
+        createProfile($user_id, 
+        // $profile_picture, 
+        $nama, $email, $password, $tipe_user);
     }
     ?>
 </body>
