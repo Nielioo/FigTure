@@ -6,9 +6,9 @@ function connect(){
     $dbpass = "";
     $db = "figture";
 
-    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $db) or die ("Error Connecting to Database");
+    $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $db) or die ("Error Connecting to Database");
 
-    return $connection;
+    return $conn;
 }
 
 function close($connection){
