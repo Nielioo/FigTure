@@ -7,7 +7,7 @@ function createProfile($user_id, $profile_picture, $nama, $email, $password, $ti
     $conn = connect();
 
     if ($conn != null) {
-        if ($user_id != null && $profile_picture != null && $nama != null && $email != null && $password != null && $tipe_user != null) {
+        if ($user_id != null && $nama != null && $email != null && $password != null && $tipe_user != null) {
             $null = NULL;
             $query = $conn->prepare("INSERT INTO `user_profile`(`user_id`, `profile_picture`, `nama`, `email`, `password`, `tipe_user`) VALUES (?,?,?,?,?,?);");
             $query->bind_param("sbssss", $user_id, $null, $nama, $email, $password, $tipe_user);

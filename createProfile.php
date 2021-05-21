@@ -19,7 +19,7 @@ require_once("profile_controller.php");
 
     <div class="container">
 
-        <form action="createProfile.php" method="post">
+        <form action="createProfile.php" method="post" enctype="multipart/form-data">
             <table cellspacing=0>
                 <tr>
                     <td>User ID</td>
@@ -64,6 +64,7 @@ require_once("profile_controller.php");
         $tipe_user = $_POST['tipe_user'];
 
         createProfile($user_id, $profile_picture, $nama, $email, $password, $tipe_user);
+        echo $profile_picture;
     }
     ?>
 </body>
