@@ -44,8 +44,8 @@ require_once("profile_controller.php");
                 <tr>
                     <td>Tipe User</td>
                     <td>
-                    <input type="radio" id="buyer" name="tipe_user" value="buyer">Buyer
-                    <input type="radio" id="seller" name="tipe_user" value="seller">Seller
+                        <input type="radio" id="buyer" name="tipe_user" value="buyer">Buyer
+                        <input type="radio" id="seller" name="tipe_user" value="seller">Seller
                     </td>
                 </tr>
             </table> <br>
@@ -57,15 +57,13 @@ require_once("profile_controller.php");
     <?php
     if (isset($_POST['create'])) {
         $user_id = $_POST['user_id'];
-        //$profile_picture = file_get_contents($_FILES['profile_picture']['tmp_name']);
+        $profile_picture = file_get_contents($_FILES['profile_picture']['tmp_name']);
         $nama = $_POST['nama'];
         $email = $_POST['email'];
         $password = $_POST['password'];
         $tipe_user = $_POST['tipe_user'];
 
-        createProfile($user_id, 
-        // $profile_picture, 
-        $nama, $email, $password, $tipe_user);
+        createProfile($user_id, $profile_picture, $nama, $email, $password, $tipe_user);
     }
     ?>
 </body>

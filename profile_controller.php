@@ -2,18 +2,16 @@
 
 require_once("db_controller.php");
 
-function createProfile($user_id, 
-// $profile_picture,
-$nama, $email, $password, $tipe_user)
+function createProfile($user_id, $profile_picture, $nama, $email, $password, $tipe_user)
 {
     $conn = connect();
 
     if ($conn != null) {
         if ($user_id != null && $nama != null && $email != null && $password != null && $tipe_user != null) {
-            // $null = NULL;
+            $null = NULL;
             $query = $conn->prepare("INSERT INTO `user_profile`(`user_id`, `profile_picture`, `nama`, `email`, `password`, `tipe_user`) VALUES (?,?,?,?,?,?);");
             $query->bind_param("sbssss", $user_id, $null, $nama, $email, $password, $tipe_user);
-            // $query->send_long_data(0, $profile_picture);
+            $query->send_long_data(0, $profile_picture);
             $query->execute() or die(mysqli_error($conn));
         }
     }
