@@ -15,11 +15,11 @@ require_once("profile_controller.php");
 </head>
 
 <body>
-    <h1 class="title">Create New Message</h1>
+    <h1 class="title">Create New Account</h1>
 
     <div class="container">
 
-        <form action="create.php" method="post">
+        <form action="createProfile.php" method="post">
             <table cellspacing=0>
                 <tr>
                     <td>User ID</td>
@@ -44,8 +44,8 @@ require_once("profile_controller.php");
                 <tr>
                     <td>Tipe User</td>
                     <td>
-                    <input type="radio" id="buyer" name="buyer" value="buyer">Buyer
-                    <input type="radio" id="seller" name="seller" value="seller">Seller
+                    <input type="radio" id="buyer" name="tipe_user" value="buyer">Buyer
+                    <input type="radio" id="seller" name="tipe_user" value="seller">Seller
                     </td>
                 </tr>
             </table> <br>
@@ -56,8 +56,8 @@ require_once("profile_controller.php");
 
     <?php
     if (isset($_POST['create'])) {
-        $user_id = $_POST['user_id '];
-        $profile_picture = file_get_contents($_FILES['pp']['tmp_name']);
+        $user_id = $_POST['user_id'];
+        $profile_picture = file_get_contents($_FILES['profile_picture']['tmp_name']);
         $nama = $_POST['nama'];
         $email = $_POST['email'];
         $password = $_POST['password'];
