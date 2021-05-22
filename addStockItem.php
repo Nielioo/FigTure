@@ -13,22 +13,13 @@ require_once("stockItem_controller.php");
 </head>
 
 <body>
-    <form action="addStockItem.php" method="POST" enctype="multipart/form-data">
-        <label>Judul : </label><input type="text" name="judul"><br />
-        <label>Deskripsi Gambar : </label><input type="text" name="deskripsi"><br />
-        <label>Gambar : </label><input type="file" name="gambar" accept="image/jpg, image/jpeg, image/png"><br />
-        <label>Kategori : </label>
-        <input type="checkbox" id="people" name="kategori[]" value="people"><label for="people">People</label>
-        <input type="checkbox" id="animal" name="kategori[]" value="animal"><label for="animal">Animal</label><br />
-        <label>Harga : </label><input type="number" name="harga"><br />
-        <input type="submit" name="submit" value="Submit">
-    </form>
-
     <?php
     // TODO add max file size on upload
     // https://stackoverflow.com/questions/6327965/html-upload-max-file-size-does-not-appear-to-work
 
     if (isset($_POST['submit'])) {
+        $user_id = "anonymous"; // temporary dummy
+        // $user_id = $_SESSION['user_id'];
         $judul = $_POST['judul'];
         $deskripsi = $_POST['deskripsi'];
         $harga = $_POST['harga'];
@@ -38,10 +29,26 @@ require_once("stockItem_controller.php");
         $mime = mime_content_type($_FILES['gambar']['tmp_name']);
 
         if (($_FILES['gambar']['name'] != "")) {
-            createImageData($judul, $deskripsi, $harga, $kategori, $gambar_name, $gambar_tmp_name, $mime);
+            createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gambar_name, $gambar_tmp_name, $mime);
         }
     }
     ?>
+
+    <form action="addStockItem.php" method="POST" enctype="multipart/form-data">
+        <label>Judul : </label><input type="text" name="judul" required><br />
+        <label>Deskripsi Gambar : </label><input type="text" name="deskripsi" required><br />
+        <label>Gambar : </label><input type="file" name="gambar" accept="image/jpg, image/jpeg, image/png" required><br />
+        <label>Kategori : </label>
+        <input type="checkbox" id="people" name="kategori[]" value="people"><label for="people">People</label>
+        <input type="checkbox" id="animal" name="kategori[]" value="animal"><label for="animal">Animal</label><br />
+        <label>Harga : </label><input type="number" name="harga" required><br />
+        <input type="submit" id="submit" name="submit" value="Submit">
+
+        <!-- Cursor:Pointer in css for hand icon
+        https://freefrontend.com/css-checkboxes/
+        https://codepen.io/FlorinCornea/pen/poNBrzm
+        https://www.w3schools.com/cssref/css_selectors.asp -->
+    </form>
 </body>
 
 </html>

@@ -1,20 +1,13 @@
 <?php
 require_once("db_controller.php");
 
-function createImageData($judul, $deskripsi, $harga, $kategori, $gambar_name, $gambar_tmp_name, $mime) {
+function createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gambar_name, $gambar_tmp_name, $mime) {
     $connection = connect();
 
     if ($connection != null) {
-        if (!is_null($judul) && !is_null($deskripsi) && !is_null($harga) && !is_null($kategori) && !is_null($gambar_name) && !is_null($gambar_tmp_name) && !is_null($mime)) {
-            // Image Properties
-            // $image_name = $_FILES['gambar']['name'];
-            // $image_tmp_name = $_FILES['gambar']['tmp_name'];
-            // // $image_format = $_FILES['gambar']['type'];
-            // // $image_type = mime_content_type($_POST['gambar']);
-            // $image_size = $_FILES['gambar']['size'];
-            // $image_error = $_FILES['gambar']['error'];
-
+        if (!is_null($user_id) && !is_null($judul) && !is_null($deskripsi) && !is_null($harga) && !is_null($kategori) && !is_null($gambar_name) && !is_null($gambar_tmp_name) && !is_null($mime)) {
             // Check image type
+            strtolower($mime);
             $mime_type = explode("/", $mime, 2);
 
             if (validateType($mime_type)) {
@@ -23,7 +16,7 @@ function createImageData($judul, $deskripsi, $harga, $kategori, $gambar_name, $g
                 $path = pathinfo($_FILES['gambar']['name']);
                 $gambar_tmp_name = $_FILES['gambar']['tmp_name'];
                 $basename = $path['basename'];
-                $path_basename = $target_dir . $basename;
+                $path_basename = $target_dir . nowFileFormat() . "_" . $basename;
 
                 if (!file_exists($path_basename)) {
                     move_uploaded_file($gambar_tmp_name, $path_basename);
@@ -33,26 +26,44 @@ function createImageData($judul, $deskripsi, $harga, $kategori, $gambar_name, $g
                     $query->execute() or die(mysqli_error($connection));
                     // Get insert id from image_file
                     $image_id = $connection->insert_id;
+
+                    // Add image category to image_category
+                    foreach($kategori as $category) {
+                        if (validateCategory($category)) {
+                            $category_id = getCategoryID($category);
+
+                            if ($category_id > 0) {
+                                $query = $connection->prepare("INSERT INTO `image_category`(`image_id`, `category_id`) VALUES (?, ?)");
+                                $query->bind_param("ii", $image_id, $category_id);
+                                $result = $query->execute() or die(mysqli_error($connection));
+                            } else {
+                                echo "category_id:" . $category_id  . " is not valid";
+                            }
+                        } else {
+                            failedToValidate("category");
+                        }
+                    }
+
+
+                    // Get type_id
+                    $type_id = getTypeID($mime_type[1]);
+
+
+                    // Add stock item to stock_item
+                    $query = $connection->prepare("INSERT INTO `stock_item`(`user_id`, `judul`, `deskripsi`, `harga`, `image_id`, `type_id`) VALUES (?, ?, ?, ?, ?, ?)");
+                    $query->bind_param("sssiii", $user_id, $judul, $deskripsi, $harga, $image_id, $type_id);
+                    $result = $query->execute() or die(mysqli_error($connection));
+                } else {
+                    echo "File exists";
                 }
-
-                // FIXME Add image category to image_category
-                // TODO kategori & type
-                $query = $connection->prepare("INSERT INTO `image_category`(`category`) VALUES (?)");
-                $query->bind_param("s", $kategori);
-                $result = $query->execute() or die(mysqli_error($connection));
-                // Get insert id from image_category
-                $category_id = $connection->insert_id;
-
-
-                // Add stock item to stock_item
-                // Get type_id
-                $type_id = getTypeID($mime_type[1]);
-
-                $query = $connection->prepare("INSERT INTO `stock_item`(`user_id`, `data_id`, `image_id`, `category_id`, `type_id`) VALUES (?, ?, ?, ?, ?)");
-                $query->bind_param("siiii", $user_id, $data_id, $image_id, $category_id, $type_id);
-                $result = $query->execute() or die(mysqli_error($connection));
+            } else {
+                failedToValidate("type");
             }
+        } else {
+            dataIsNull("create stock item");
         }
+    } else {
+        failedToConnect();
     }
 
     close($connection);
@@ -63,30 +74,178 @@ function createImageData($judul, $deskripsi, $harga, $kategori, $gambar_name, $g
     // $result = $query->execute() or die(mysqli_error($connection));
     // // Get insert id from image_data
     // $data_id = $connection->insert_id;
+
+    // Image Properties
+    // $image_name = $_FILES['gambar']['name'];
+    // $image_tmp_name = $_FILES['gambar']['tmp_name'];
+    // $image_format = $_FILES['gambar']['type'];
+    // $image_type = mime_content_type($_POST['gambar']);
+    // $image_size = $_FILES['gambar']['size'];
+    // $image_error = $_FILES['gambar']['error'];
+}
+
+function readStockItemByUserId($user_id) {
+}
+
+function getImageIdByUserId($user_id) {
+    $image_list = array();
+
+    $connection = connect();
+
+    if ($connection != null) {
+        if (!is_null($user_id)) {
+            $query = $connection->prepare("SELECT `image_id` FROM `stock_item` WHERE `user_id`=?");
+            $query->bind_param("i", $user_id);
+            $query->execute() or die(mysqli_error($connection));
+
+            $result = $query->get_result();
+            if (!empty($result)) {
+                while ($row = $result->fetch_assoc()) {
+                    $data = $row['image_id'];
+                    array_push($image_list, $data);
+                }
+            } else {
+                dataIsNull("image list");
+            }
+        } else {
+            dataIsNull("read stock item");
+        }
+    } else {
+        failedToConnect();
+    }
+
+    close($connection);
+
+    return $image_list;
 }
 
 function validateType($mime_type) {
     $allowed_type = array("image");
     $allowed_ext = array("jpg", "jpeg", "png");
 
-    if (in_array($mime_type[0], $allowed_type) && in_array($mime_type[1], $allowed_ext)) {
-        
+    return (in_array($mime_type[0], $allowed_type) && in_array($mime_type[1], $allowed_ext));
+}
+
+function getTypeList() {
+    $type_list = array();
+
+    $connection = connect();
+
+    if (!is_null($connection)) {
+        $query = $connection->prepare("SELECT `type` FROM `image_available_type`");
+        $query->execute();
+
+        $result = $query->get_result();
+
+        if (!empty($result)) {
+            while ($row = $result->fetch_assoc()) {
+                $data = $row['type'];
+                array_push($type_list, $data);
+            }
+        } else {
+            dataIsNull("type list");
+        }
+    } else {
+        failedToConnect();
     }
+
+    close($connection);
+
+    return $type_list;
 }
 
 function getTypeID($type) {
     $allowed_ext = array("jpg", "jpeg", "png");
+    $type_id = -1;
 
     switch ($type) {
         case $allowed_ext[0]:
         case $allowed_ext[1]:
-            
+            $type_id = 1;
             break;
         case $allowed_ext[2]:
+            $type_id = 2;
             break;
         default:
-            return -1;
+            $type_id = -1;
             break;
     }
+
+    return $type_id;
+}
+
+function validateCategory($category) {
+    $category = ucfirst(strtolower($category));
+    $available_category = getCategoryList();
+    
+    return in_array($category, $available_category);
+}
+
+function getCategoryList() {
+    $category_list = array();
+
+    $connection = connect();
+
+    if (!is_null($connection)) {
+        $query = $connection->prepare("SELECT `category` FROM `image_available_category`");
+        $query->execute();
+
+        $result = $query->get_result();
+
+        if (!empty($result)) {
+            while ($row = $result->fetch_assoc()) {
+                $data = $row['category'];
+                array_push($category_list, $data);
+            }
+        } else {
+            dataIsNull("category list");
+        }
+    } else {
+        failedToConnect();
+    }
+
+    close($connection);
+
+    return $category_list;
+}
+
+function getCategoryID($category) {
+    $category = ucfirst(strtolower($category));
+    $category_id = -1;
+
+    $connection = connect();
+
+    if (!is_null($connection)) {
+        $query = $connection->prepare("SELECT `id` FROM `image_available_category` WHERE `category`=?");
+        $query->bind_param("i", $category);
+        $query->execute();
+
+        $result = $query->get_result();
+        $data = $result->fetch_assoc();
+
+        if (!empty($data)) {
+            $category_id = $data['id'];
+        } else {
+            dataIsNull("category id");
+        }
+    } else {
+        failedToConnect();
+    }
+
+    close($connection);
+
+    return $category_id;
+}
+
+function dataIsNull($string) {
+    echo "Some " . $string . " data are NULL";
+}
+
+function failedToValidate($string) {
+    echo "Failed to validate " . $string;
+}
+
+function failedToConnect() {
+    echo "Failed connecting to database";
 }
 ?>
