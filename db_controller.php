@@ -22,4 +22,11 @@ function now() {
     return $time;
 }
 
+function nowFileFormat() {
+    $now = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
+    $time = $now->format('Ymd_His');
+
+    return $time;
+}
+
 ?>
