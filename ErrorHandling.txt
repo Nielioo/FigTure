@@ -1,0 +1,7 @@
+Error handling
+
+// Image upload to database
+Syntax error in MariaDB -> Use backticks and single quote in SQL syntax
+Column NULL -> Check parameter number in send_long_data to match blob in bind_param, index starts at 0
+Damaged file -> Remove mysqli_real_escape_string
+Got a packet bigger than 'max_allowed_packet'bytes -> Go to /XAMPP/xamppfiles/etc/my.cnf, change max_allowed_packet size to 16M (Preferably 16M to match MEDIUMBLOB)
