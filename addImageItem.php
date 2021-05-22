@@ -35,13 +35,13 @@ require_once("db_controller.php");
         // }
 
         // With prepare
-        $gambar_data = file_get_contents($_FILES['gambar']['tmp_name']);
+        // $gambar_data = file_get_contents($_FILES['gambar']['tmp_name']);
 
-        $query = $connection->prepare("INSERT INTO `image_file`(`gambar`) VALUES (?)");
-        $null = NULL;
-        $query->bind_param("b", $null);
-        $query->send_long_data(0, $gambar_data);
-        $query->execute() or die(mysqli_error($connection));
+        // $query = $connection->prepare("INSERT INTO `image_file`(`gambar`) VALUES (?)");
+        // $null = NULL;
+        // $query->bind_param("b", $null);
+        // $query->send_long_data(0, $gambar_data);
+        // $query->execute() or die(mysqli_error($connection));
 
         // $stmt = $connection->prepare("INSERT INTO image_file (gambar) VALUES(?)");
         // $null = NULL;
@@ -60,8 +60,28 @@ require_once("db_controller.php");
 
         // echo '<img src="data:image/jpeg;base64,' . base64_encode($image) . '" />';
         // echo 'Hello world.';
+
+        $gambar_name = $_FILES['gambar']['name'];
+
+        if (($_FILES['gambar']['name'] != "")) {
+            $target_dir = "stock_item/";
+            $path = pathinfo($_FILES['gambar']['name']);
+            $gambar_tmp_name = $_FILES['gambar']['tmp_name'];
+            $basename = $path['basename'];
+            $path_basename = $target_dir . $basename;
+
+            if (!file_exists($path_basename)) {
+                $query = $connection->prepare("INSERT INTO `image_file`(`gambar`) VALUES (?)");
+                $query->bind_param("s", $path_basename);
+                $query->execute() or die(mysqli_error($connection));
+
+                move_uploaded_file($gambar_tmp_name, $path_basename);
+            }
+        }
     }
     ?>
+
+    <img src="<?=$path_basename?>">
 </body>
 
 </html>
