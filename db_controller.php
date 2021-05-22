@@ -15,4 +15,11 @@ function close($connection){
     mysqli_close($connection);
 }
 
+function now() {
+    $now = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
+    $time = $now->format('Y-m-d H:i:s');
+
+    return $time;
+}
+
 ?>
