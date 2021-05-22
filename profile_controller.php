@@ -34,11 +34,13 @@ function createProfile($user_id, $profile_picture_name, $profile_picture_tmp_nam
 
 function readProfile($id)
 {
-
+    
     $conn = connect();
 
-    $query = $conn->prepare("SELECT * FROM `user_profile` WHERE `id`=?;");
-    $query->bind_param('i', $id);
+    $user_id = $_SESSION['user_id'];
+
+    $query = $conn->prepare("SELECT * FROM `user_profile` WHERE `user_id`=?;");
+    $query->bind_param('s', $user_id);
     $query->execute() or die(mysqli_error($conn));
 
     $result = $query->get_result();
