@@ -35,7 +35,7 @@ require_once("profile_controller.php");
             <tr>
                 <td><?= $read['id'] ?></td>
                 <td><?= $read['user_id'] ?></td>
-                <td><?= $read['profile_picture'] ?></td>
+                <td><img src="<?=$read['profile_picture']?>" width="75" height="75"></td>
                 <td><?= $read['nama'] ?></td>
                 <td><?= $read['email'] ?></td>
                 <td><?= $read['password'] ?></td>
