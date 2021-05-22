@@ -11,11 +11,11 @@ require_once("profile_controller.php");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create</title>
+    <title>Create Profile</title>
 </head>
 
 <body>
-    <h1 class="title">Create New Account</h1>
+    <h1 class="title">Create Profile</h1>
 
     <div class="container">
 
