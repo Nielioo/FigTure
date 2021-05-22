@@ -2,17 +2,31 @@
 
 require_once("db_controller.php");
 
-function createProfile($user_id, $profile_picture, $nama, $email, $password, $tipe_user)
+function createProfile($user_id, $profile_picture_name, $profile_picture_tmp_name, $mime, $nama, $email, $password, $tipe_user)
 {
     $conn = connect();
 
     if ($conn != null) {
-        if ($user_id != null && $profile_picture != null && $nama != null && $email != null && $password != null && $tipe_user != null) {
-            $null = NULL;
-            $query = $conn->prepare("INSERT INTO `user_profile`(`user_id`, `profile_picture`, `nama`, `email`, `password`, `tipe_user`) VALUES (?,?,?,?,?,?);");
-            $query->bind_param("sbssss", $user_id, $null, $nama, $email, $password, $tipe_user);
-            $query->send_long_data(0, $profile_picture);
-            $query->execute() or die(mysqli_error($conn));
+        if ($user_id != null && $profile_picture_name != null && $profile_picture_tmp_name != null && $mime != null && $nama != null && $email != null && $password != null && $tipe_user != null) {
+
+            // Check image type
+            $mime_type = explode("/", $mime, 2);
+
+            if (validateType($mime_type)) {
+                $target_dir = "profile_picture/";
+                $path = pathinfo($_FILES['profile_picture']['name']);
+                $profile_picture_tmp_name = $_FILES['profile_picture']['tmp_name'];
+                $basename = $path['basename'];
+                $path_basename = $target_dir . $basename;
+
+                if (!file_exists($path_basename)) {
+                    move_uploaded_file($profile_picture_tmp_name, $path_basename);
+
+                    $query = $conn->prepare("INSERT INTO `user_profile`(`user_id`, `profile_picture`, `nama`, `email`, `password`, `tipe_user`) VALUES (?,?,?,?,?,?);");
+                    $query->bind_param("ssssss", $user_id, $path_basename, $nama, $email, $password, $tipe_user);
+                    $query->execute() or die(mysqli_error($conn));
+                }
+            }
         }
     }
     close($conn);
@@ -20,11 +34,13 @@ function createProfile($user_id, $profile_picture, $nama, $email, $password, $ti
 
 function readProfile($id)
 {
-
+    
     $conn = connect();
 
-    $query = $conn->prepare("SELECT * FROM `user_profile` WHERE `id`=?;");
-    $query->bind_param('i', $id);
+    $user_id = $_SESSION['user_id'];
+
+    $query = $conn->prepare("SELECT * FROM `user_profile` WHERE `user_id`=?;");
+    $query->bind_param('s', $user_id);
     $query->execute() or die(mysqli_error($conn));
 
     $result = $query->get_result();
@@ -96,4 +112,14 @@ function deleteProfile($id)
         $query->execute() or die(mysqli_error($conn));
     }
     close($conn);
+}
+
+function validateType($mime_type)
+{
+    $allowed_type = array("image");
+    $allowed_ext = array("jpg", "jpeg", "png");
+
+    if (in_array($mime_type[0], $allowed_type) && in_array($mime_type[1], $allowed_ext)) {
+        return (in_array($mime_type[0], $allowed_type) && in_array($mime_type[1], $allowed_ext));
+    }
 }
