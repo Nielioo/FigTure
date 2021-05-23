@@ -14,6 +14,8 @@ require_once("stockItem_controller.php");
 
 <body>
     <?php
+    require_once("websiteHeader.html");
+
     if (isset($_POST['submit'])) {
         $user_id = $_POST['user_id'];
         // $user_id = $_SESSION['user_id'];
