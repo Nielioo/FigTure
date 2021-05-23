@@ -1,6 +1,7 @@
 <?php
 
 require_once("profile_controller.php");
+require_once("websiteHeader.html");
 
 ?>
 
@@ -11,6 +12,12 @@ require_once("profile_controller.php");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Read All Profile</title>
+    <style>
+        img{
+            width: 75;
+            height: 75;
+        }
+    </style>
 </head>
 <body>
 <h1 class="title">Read All Profile</h1>
@@ -35,7 +42,7 @@ require_once("profile_controller.php");
             <tr>
                 <td><?= $read['id'] ?></td>
                 <td><?= $read['user_id'] ?></td>
-                <td><img src="<?=$read['profile_picture']?>" width="75" height="75"></td>
+                <td><img src="<?=$read['profile_picture']?>"></td>
                 <td><?= $read['nama'] ?></td>
                 <td><?= $read['email'] ?></td>
                 <td><?= $read['password'] ?></td>

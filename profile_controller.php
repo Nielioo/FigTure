@@ -32,12 +32,9 @@ function createProfile($user_id, $profile_picture_name, $profile_picture_tmp_nam
     close($conn);
 }
 
-function readProfile($id)
+function readProfile($user_id)
 {
-    
     $conn = connect();
-
-    $user_id = $_SESSION['user_id'];
 
     $query = $conn->prepare("SELECT * FROM `user_profile` WHERE `user_id`=?;");
     $query->bind_param('s', $user_id);
@@ -47,15 +44,13 @@ function readProfile($id)
     $data = $result->fetch_assoc();
 
     if (!empty($data)) {
-        $obj = array(
-            'id' => $data['id'],
-            'user_id' => $data['user_id'],
-            'profile_picture' => $data['profile_picture'],
-            'nama' => $data['nama'],
-            'email' => $data['email'],
-            'password' => $data['password'],
-            'tipe_user' => $data['tipe_user'],
-        );
+        $obj['id'] = $data['id'];
+        $obj['user_id'] = $data['user_id'];
+        $obj['profile_picture'] = $data['profile_picture'];
+        $obj['nama'] = $data['nama'];
+        $obj['email'] = $data['email'];
+        $obj['password'] = $data['password'];
+        $obj['tipe_user'] = $data['tipe_user'];
     }
     close($conn);
 
