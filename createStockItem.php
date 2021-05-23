@@ -30,7 +30,7 @@ require_once("websiteHeader.html");
         $mime = mime_content_type($_FILES['gambar']['tmp_name']);
 
         if (($_FILES['gambar']['name'] != "")) {
-            createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gambar_name, $gambar_tmp_name, $mime);
+            $item_id = createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gambar_name, $gambar_tmp_name, $mime);
         }
     }
     ?>

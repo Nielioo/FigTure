@@ -3,6 +3,8 @@ require_once("db_controller.php");
 
 function createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gambar_name, $gambar_tmp_name, $mime)
 {
+    $item_id = -1;
+
     $connection = connect();
 
     if ($connection != null) {
@@ -55,6 +57,8 @@ function createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gamba
                     $query = $connection->prepare("INSERT INTO `stock_item`(`user_id`, `judul`, `deskripsi`, `harga`, `image_id`, `type_id`) VALUES (?, ?, ?, ?, ?, ?)");
                     $query->bind_param("sssiii", $user_id, $judul, $deskripsi, $harga, $image_id, $type_id);
                     $result = $query->execute() or die(mysqli_error($connection));
+                    // Get insert id from stock_item
+                    $item_id = $connection->insert_id;
                 } else {
                     echo "File exists";
                 }
@@ -69,6 +73,8 @@ function createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gamba
     }
 
     close($connection);
+
+    return $item_id;
 
     // // Add image data to image_data
     // $query = $connection->prepare("INSERT INTO `image_data`(`judul`, `deskripsi`, `harga`) VALUES (?, ?, ?)");
