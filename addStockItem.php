@@ -1,5 +1,6 @@
 <?php
 require_once("stockItem_controller.php");
+require_once("websiteHeader.html");
 ?>
 
 <!DOCTYPE html>
@@ -18,8 +19,8 @@ require_once("stockItem_controller.php");
     // https://stackoverflow.com/questions/6327965/html-upload-max-file-size-does-not-appear-to-work
 
     if (isset($_POST['submit'])) {
-        $user_id = "anonymous"; // temporary dummy
-        // $user_id = $_SESSION['user_id'];
+        session_start();
+        $user_id = $_SESSION['user_id'];
         $judul = $_POST['judul'];
         $deskripsi = $_POST['deskripsi'];
         $harga = $_POST['harga'];

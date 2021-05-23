@@ -85,30 +85,53 @@ function createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gamba
 }
 
 function readStockItemByUserId($user_id) {
-}
-
-function getImageIdByUserId($user_id) {
-    $image_list = array();
+    $image_data = array();
 
     $connection = connect();
 
     if ($connection != null) {
         if (!is_null($user_id)) {
-            $query = $connection->prepare("SELECT `image_id` FROM `stock_item` WHERE `user_id`=?");
-            $query->bind_param("i", $user_id);
+            $query = $connection->prepare(
+                "SELECT
+                stock_item.judul,
+                stock_item.deskripsi,
+                stock_item.harga,
+                image_file.gambar,
+                image_available_type.type,
+                image_available_category.category
+            FROM
+                (
+                    `stock_item`,
+                    `image_file`,
+                    `image_category`,
+                    `image_available_type`,
+                    `image_available_category`
+                )
+            WHERE
+                stock_item.user_id = 'anonym' AND stock_item.image_id = image_file.id AND stock_item.type_id = image_available_type.id AND(
+                    stock_item.image_id = image_category.image_id AND image_category.image_id = image_available_category.id
+                )");
+            $query->bind_param("s", $user_id);
             $query->execute() or die(mysqli_error($connection));
 
             $result = $query->get_result();
             if (!empty($result)) {
                 while ($row = $result->fetch_assoc()) {
-                    $data = $row['image_id'];
-                    array_push($image_list, $data);
+                    $data['judul'] = $row['judul'];
+                    $data['deskripsi'] = $row['deskripsi'];
+                    $data['harga'] = $row['harga'];
+                    $data['gambar'] = $row['gambar'];
+                    $data['type'] = $row['type'];
+                    $data['category'] = $row['category'];
+                    array_push($image_data, $data);
                 }
+
+
             } else {
                 dataIsNull("image list");
             }
         } else {
-            dataIsNull("read stock item");
+            dataIsNull("read stock item: user id");
         }
     } else {
         failedToConnect();
@@ -116,7 +139,7 @@ function getImageIdByUserId($user_id) {
 
     close($connection);
 
-    return $image_list;
+    return $image_data;
 }
 
 function validateType($mime_type) {
