@@ -17,7 +17,7 @@ function createProfile($user_id, $profile_picture_name, $profile_picture_tmp_nam
                 $path = pathinfo($_FILES['profile_picture']['name']);
                 $profile_picture_tmp_name = $_FILES['profile_picture']['tmp_name'];
                 $basename = $path['basename'];
-                $path_basename = $target_dir . $basename;
+                $path_basename = $target_dir . nowFileFormat() . "_" . $basename;
 
                 if (!file_exists($path_basename)) {
                     move_uploaded_file($profile_picture_tmp_name, $path_basename);
@@ -98,7 +98,7 @@ function updateProfile($user_id, $newUser_id, $profile_picture_name, $profile_pi
             $path = pathinfo($_FILES['profile_picture']['name']);
             $profile_picture_tmp_name = $_FILES['profile_picture']['tmp_name'];
             $basename = $path['basename'];
-            $path_basename = $target_dir . $basename;
+            $path_basename = $target_dir . nowFileFormat() . "_" . $basename;
 
             if (!file_exists($path_basename)) {
                 move_uploaded_file($profile_picture_tmp_name, $path_basename);
@@ -112,13 +112,13 @@ function updateProfile($user_id, $newUser_id, $profile_picture_name, $profile_pi
     close($conn);
 }
 
-function deleteProfile($id)
+function deleteProfile($user_id)
 {
     $conn = connect();
 
     if ($conn != null) {
-        $query = $conn->prepare("DELETE FROM `user_profile` WHERE `id`=?;");
-        $query->bind_param("i", $id);
+        $query = $conn->prepare("DELETE FROM `user_profile` WHERE `user_id`=?;");
+        $query->bind_param("s", $user_id);
         $query->execute() or die(mysqli_error($conn));
     }
     close($conn);
