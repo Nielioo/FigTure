@@ -25,23 +25,23 @@ require_once("websiteHeader.html");
             <table cellspacing=0>
                 <tr>
                     <td>User ID</td>
-                    <td><input type="text" name="user_id"></td>
+                    <td><input type="text" name="user_id" required></td>
                 </tr>
                 <tr>
                     <td>Profile Picture</td>
-                    <td><input type="file" name="profile_picture" accept="image/jpg, image/jpeg, image/png"></td>
+                    <td><input type="file" name="profile_picture" accept="image/jpg, image/jpeg, image/png" required></td>
                 </tr>
                 <tr>
                     <td>Nama</td>
-                    <td><input type="text" name="nama"></td>
+                    <td><input type="text" name="nama" required></td>
                 </tr>
                 <tr>
                     <td>Email</td>
-                    <td><input type="text" name="email"></td>
+                    <td><input type="text" name="email" required></td>
                 </tr>
                 <tr>
                     <td>Password</td>
-                    <td><input type="password" name="password"></td>
+                    <td><input type="password" name="password" required></td>
                 </tr>
                 <tr>
                     <td>Tipe User</td>
