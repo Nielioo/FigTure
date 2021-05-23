@@ -125,6 +125,8 @@ function readStockItemByUserId($user_id)
                     $data['category'] = $row['category'];
                     array_push($image_data, $data);
                 }
+
+                // TODO Return result
             } else {
                 dataIsNull("image list");
             }
@@ -140,6 +142,7 @@ function readStockItemByUserId($user_id)
     return $image_data;
 }
 
+// TODO recheck
 function updateStockItemByUserId($user_id, $judul, $deskripsi, $harga, $kategori, $gambar_name, $gambar_tmp_name, $mime)
 {
     $connection = connect();
@@ -210,6 +213,7 @@ function updateStockItemByUserId($user_id, $judul, $deskripsi, $harga, $kategori
     close($connection);
 }
 
+// TODO recheck
 function deleteStockItemByUserId($user_id)
 {
     $conn = connect();
