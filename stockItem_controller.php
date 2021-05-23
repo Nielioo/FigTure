@@ -28,6 +28,7 @@ function createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gamba
                     $image_id = $connection->insert_id;
 
                     // Add image category to image_category
+                    // FIXME more than 1 category is detected as category 1
                     foreach($kategori as $category) {
                         if (validateCategory($category)) {
                             $category_id = getCategoryID($category);
@@ -100,17 +101,14 @@ function readStockItemByUserId($user_id) {
                 image_available_type.type,
                 image_available_category.category
             FROM
-                (
-                    `stock_item`,
-                    `image_file`,
-                    `image_category`,
-                    `image_available_type`,
-                    `image_available_category`
+                (`stock_item`, `image_category`)
+            INNER JOIN image_file ON stock_item.image_id = image_file.id
+            INNER JOIN image_available_type ON stock_item.type_id = image_available_type.id
+            INNER JOIN image_available_category ON(
+                    stock_item.image_id = image_category.image_id AND image_category.category_id = image_available_category.id
                 )
             WHERE
-                stock_item.user_id = 'anonym' AND stock_item.image_id = image_file.id AND stock_item.type_id = image_available_type.id AND(
-                    stock_item.image_id = image_category.image_id AND image_category.image_id = image_available_category.id
-                )");
+                stock_item.user_id = ?");
             $query->bind_param("s", $user_id);
             $query->execute() or die(mysqli_error($connection));
 
