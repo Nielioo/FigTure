@@ -1,5 +1,6 @@
 <?php
 require_once("stockItem_controller.php");
+require_once("websiteHeader.html");
 ?>
 
 <!DOCTYPE html>
@@ -14,19 +15,16 @@ require_once("stockItem_controller.php");
 
 <body>
     <?php
-    require_once("websiteHeader.html");
-
-    if (isset($_POST['submit'])) {
-        $user_id = $_POST['user_id'];
-        // $user_id = $_SESSION['user_id'];
+    if (isset($_POST['search'])) {
+        session_start();
+        $user_id = $_SESSION['user_id'];
 
         readStockItemByUserId($user_id);
     }
     ?>
 
-    <form action="addStockItem.php" method="POST" enctype="multipart/form-data">
-        <label>user_id : </label><input type="text" name="user_id" required><br />
-        <input type="submit" id="submit" name="submit" value="Search">
+    <form action="readStockItemByUserId.php" method="POST" enctype="multipart/form-data">
+        <input type="submit" id="search" name="search" value="Search">
     </form>
 </body>
 
