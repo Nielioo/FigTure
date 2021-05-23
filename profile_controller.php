@@ -85,14 +85,29 @@ function readAllProfile()
     return $list;
 }
 
-function updateProfile($id, $user_id, $profile_picture, $nama, $email, $password, $tipe_user)
+function updateProfile($user_id, $newUser_id, $profile_picture_name, $profile_picture_tmp_name, $mime, $nama, $email, $password, $tipe_user)
 {
     $conn = connect();
 
     if ($conn != null) {
-        $query = $conn->prepare("UPDATE `user_profile` SET `user_id`=?,`profile_picture`=?,`nama`=?,`email`=?,`password`=?,`tipe_user`=? WHERE `id`=?;");
-        $query->bind_param("sbssssi", $user_id, $profile_picture, $nama, $email, $password, $tipe_user, $id);
-        $query->execute() or die(mysqli_error($conn));
+        // Check image type
+        $mime_type = explode("/", $mime, 2);
+
+        if (validateType($mime_type)) {
+            $target_dir = "profile_picture/";
+            $path = pathinfo($_FILES['profile_picture']['name']);
+            $profile_picture_tmp_name = $_FILES['profile_picture']['tmp_name'];
+            $basename = $path['basename'];
+            $path_basename = $target_dir . $basename;
+
+            if (!file_exists($path_basename)) {
+                move_uploaded_file($profile_picture_tmp_name, $path_basename);
+
+                $query = $conn->prepare("UPDATE `user_profile` SET `user_id`=?,`profile_picture`=?,`nama`=?,`email`=?,`password`=?,`tipe_user`=? WHERE `user_id`=?;");
+                $query->bind_param("sssssss", $newUser_id, $path_basename, $nama, $email, $password, $tipe_user, $user_id);
+                $query->execute() or die(mysqli_error($conn));
+            }
+        }
     }
     close($conn);
 }
