@@ -364,3 +364,4 @@ function failedToConnect()
 {
     echo "Failed connecting to database";
 }
+?>
