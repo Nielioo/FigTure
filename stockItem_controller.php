@@ -16,7 +16,7 @@ function createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gamba
                 $path = pathinfo($_FILES['gambar']['name']);
                 $gambar_tmp_name = $_FILES['gambar']['tmp_name'];
                 $basename = $path['basename'];
-                $path_basename = $target_dir . nowFileFormat() . "_" . $basename;
+                $path_basename = $target_dir . nowFileFormat() . "_" . str_replace(' ', '_', $basename);
 
                 if (!file_exists($path_basename)) {
                     move_uploaded_file($gambar_tmp_name, $path_basename);
