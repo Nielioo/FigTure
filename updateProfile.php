@@ -36,7 +36,10 @@ require_once("websiteHeader.html");
                 </tr>
                 <tr>
                     <td>Profile Picture</td>
-                    <td><input type="file" name="profile_picture" accept="image/jpg, image/jpeg, image/png" value="<?=$readProfile['profile_picture']?>"></td>
+                    <td>
+                        <input type="hidden" name="profile_picture" value="<?=$readProfile['profile_picture']?>">
+                        <input type="file" name="profile_picture" accept="image/jpg, image/jpeg, image/png">
+                    </td>
                 </tr>
                 <tr>
                     <td>Nama</td>
