@@ -22,40 +22,37 @@ require_once("websiteHeader.html");
 
 <body>
     <?php
-    if (isset($_POST['search'])) {
-        session_start();
-        $user_id = $_SESSION['user_id'];
-        $image_list = readStockItemByUserId($user_id);
+    session_start();
+    $user_id = $_SESSION['user_id'];
+    $image_list = readStockItemByUserId($user_id);
     ?>
-        <table cellspacing=0 border=1>
-            <tr>
-                <th>Judul</th>
-                <th>Deskripsi</th>
-                <th>Harga</th>
-                <th>Gambar</th>
-                <th>Tipe</th>
-                <th>Kategori</th>
-            </tr>
-            <?php
-            foreach ($image_list as $image) {
-                $category_list = implode(",", $image['category']);
-            ?>
-                <tr>
-                    <td><?= $image['judul'] ?></td>
-                    <td><?= $image['deskripsi'] ?></td>
-                    <td><?= $image['harga'] ?></td>
-                    <td><img src="<?= $image['gambar'] ?>"></td>
-                    <td><?= $image['type'] ?></td>
-                    <td><?= $category_list ?></td>
-                </tr>
+    <br />
+    <table cellspacing=0 border=1>
+        <tr>
+            <th>Judul</th>
+            <th>Deskripsi</th>
+            <th>Harga</th>
+            <th>Gambar</th>
+            <th>Tipe</th>
+            <th>Kategori</th>
+            <th>Edit</th>
+        </tr>
         <?php
-            }
+        foreach ($image_list as $image) {
+            $category_list = implode(",", $image['category']);
+        ?>
+            <tr>
+                <td><?= $image['judul'] ?></td>
+                <td><?= $image['deskripsi'] ?></td>
+                <td><?= $image['harga'] ?></td>
+                <td><img src="<?= $image['gambar'] ?>"></td>
+                <td><?= $image['type'] ?></td>
+                <td><?= $category_list ?></td>
+                <td><a href="updateStockItem.php?image_id=<?=$image['image_id']?>">Edit</a></td>
+            </tr>
+        <?php
         }
         ?>
-
-        <form method="POST">
-            <input type="submit" id="search" name="search" value="Search">
-        </form>
 </body>
 
 </html>
