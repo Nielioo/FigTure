@@ -66,7 +66,6 @@ require_once("websiteHeader.html");
 
     <?php
     if (isset($_POST['update'])) {
-        session_start();
         $user_id = $_SESSION['user_id'];
 
         $newUser_id = $_POST['user_id'];
