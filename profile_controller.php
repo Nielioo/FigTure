@@ -17,7 +17,7 @@ function createProfile($user_id, $profile_picture_name, $profile_picture_tmp_nam
                 $path = pathinfo($_FILES['profile_picture']['name']);
                 $profile_picture_tmp_name = $_FILES['profile_picture']['tmp_name'];
                 $basename = $path['basename'];
-                $path_basename = $target_dir . nowFileFormat() . "_" . $basename;
+                $path_basename = $target_dir . nowFileFormat() . "_" . str_replace(' ', '_', $basename);
 
                 if (!file_exists($path_basename)) {
                     move_uploaded_file($profile_picture_tmp_name, $path_basename);
@@ -98,7 +98,7 @@ function updateProfile($user_id, $newUser_id, $profile_picture_name, $profile_pi
             $path = pathinfo($_FILES['profile_picture']['name']);
             $profile_picture_tmp_name = $_FILES['profile_picture']['tmp_name'];
             $basename = $path['basename'];
-            $path_basename = $target_dir . nowFileFormat() . "_" . $basename;
+            $path_basename = $target_dir . nowFileFormat() . "_" . str_replace(' ', '_', $basename);
 
             if (!file_exists($path_basename)) {
                 move_uploaded_file($profile_picture_tmp_name, $path_basename);
