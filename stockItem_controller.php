@@ -3,6 +3,8 @@ require_once("db_controller.php");
 
 function createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gambar_name, $gambar_tmp_name, $mime)
 {
+    $item_id = -1;
+
     $connection = connect();
 
     if ($connection != null) {
@@ -17,7 +19,7 @@ function createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gamba
                 $path = pathinfo($_FILES['gambar']['name']);
                 $gambar_tmp_name = $_FILES['gambar']['tmp_name'];
                 $basename = $path['basename'];
-                $path_basename = $target_dir . nowFileFormat() . "_" . $basename;
+                $path_basename = $target_dir . nowFileFormat() . "_" . str_replace(' ', '_', $basename);
 
                 if (!file_exists($path_basename)) {
                     move_uploaded_file($gambar_tmp_name, $path_basename);
@@ -29,7 +31,8 @@ function createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gamba
                     $image_id = $connection->insert_id;
 
                     // Add image category to image_category
-                    foreach ($kategori as $category) {
+                    // FIXME more than 1 category is detected as category 1
+                    foreach($kategori as $category) {
                         if (validateCategory($category)) {
                             $category_id = getCategoryID($category);
 
@@ -54,6 +57,8 @@ function createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gamba
                     $query = $connection->prepare("INSERT INTO `stock_item`(`user_id`, `judul`, `deskripsi`, `harga`, `image_id`, `type_id`) VALUES (?, ?, ?, ?, ?, ?)");
                     $query->bind_param("sssiii", $user_id, $judul, $deskripsi, $harga, $image_id, $type_id);
                     $result = $query->execute() or die(mysqli_error($connection));
+                    // Get insert id from stock_item
+                    $item_id = $connection->insert_id;
                 } else {
                     echo "File exists";
                 }
@@ -68,6 +73,8 @@ function createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gamba
     }
 
     close($connection);
+
+    return $item_id;
 
     // // Add image data to image_data
     // $query = $connection->prepare("INSERT INTO `image_data`(`judul`, `deskripsi`, `harga`) VALUES (?, ?, ?)");
@@ -102,18 +109,14 @@ function readStockItemByUserId($user_id)
                 image_available_type.type,
                 image_available_category.category
             FROM
-                (
-                    `stock_item`,
-                    `image_file`,
-                    `image_category`,
-                    `image_available_type`,
-                    `image_available_category`
+                (`stock_item`, `image_category`)
+            INNER JOIN image_file ON stock_item.image_id = image_file.id
+            INNER JOIN image_available_type ON stock_item.type_id = image_available_type.id
+            INNER JOIN image_available_category ON(
+                    stock_item.image_id = image_category.image_id AND image_category.category_id = image_available_category.id
                 )
             WHERE
-                stock_item.user_id = 'anonym' AND stock_item.image_id = image_file.id AND stock_item.type_id = image_available_type.id AND(
-                    stock_item.image_id = image_category.image_id AND image_category.image_id = image_available_category.id
-                )"
-            );
+                stock_item.user_id = ?");
             $query->bind_param("s", $user_id);
             $query->execute() or die(mysqli_error($connection));
 
@@ -128,6 +131,8 @@ function readStockItemByUserId($user_id)
                     $data['category'] = $row['category'];
                     array_push($image_data, $data);
                 }
+
+                // TODO Return result
             } else {
                 dataIsNull("image list");
             }
@@ -143,6 +148,7 @@ function readStockItemByUserId($user_id)
     return $image_data;
 }
 
+// TODO recheck
 function updateStockItemByUserId($user_id, $judul, $deskripsi, $harga, $kategori, $gambar_name, $gambar_tmp_name, $mime)
 {
     $connection = connect();
@@ -159,7 +165,7 @@ function updateStockItemByUserId($user_id, $judul, $deskripsi, $harga, $kategori
                 $path = pathinfo($_FILES['gambar']['name']);
                 $gambar_tmp_name = $_FILES['gambar']['tmp_name'];
                 $basename = $path['basename'];
-                $path_basename = $target_dir . nowFileFormat() . "_" . $basename;
+                $path_basename = $target_dir . nowFileFormat() . "_" . str_replace(' ', '_', $basename);
 
                 if (!file_exists($path_basename)) {
                     move_uploaded_file($gambar_tmp_name, $path_basename);
@@ -213,6 +219,7 @@ function updateStockItemByUserId($user_id, $judul, $deskripsi, $harga, $kategori
     close($connection);
 }
 
+// TODO recheck
 function deleteStockItemByUserId($user_id)
 {
     $conn = connect();
@@ -363,3 +370,4 @@ function failedToConnect()
 {
     echo "Failed connecting to database";
 }
+?>

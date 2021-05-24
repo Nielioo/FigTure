@@ -30,12 +30,12 @@ require_once("websiteHeader.html");
         $mime = mime_content_type($_FILES['gambar']['tmp_name']);
 
         if (($_FILES['gambar']['name'] != "")) {
-            createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gambar_name, $gambar_tmp_name, $mime);
+            $item_id = createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gambar_name, $gambar_tmp_name, $mime);
         }
     }
     ?>
 
-    <form action="addStockItem.php" method="POST" enctype="multipart/form-data">
+    <form action="createStockItem.php" method="POST" enctype="multipart/form-data">
         <label>Judul : </label><input type="text" name="judul" required><br />
         <label>Deskripsi Gambar : </label><input type="text" name="deskripsi" required><br />
         <label>Gambar : </label><input type="file" name="gambar" accept="image/jpg, image/jpeg, image/png" required><br />

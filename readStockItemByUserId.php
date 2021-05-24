@@ -19,7 +19,7 @@ require_once("websiteHeader.html");
         session_start();
         $user_id = $_SESSION['user_id'];
 
-        readStockItemByUserId($user_id);
+        $image_list = readStockItemByUserId($user_id);
     }
     ?>
 
