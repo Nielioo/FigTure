@@ -13,6 +13,12 @@ require_once("websiteHeader.html");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Profile</title>
+    <style>
+        img{
+           width: 75; 
+           height: 75;
+        }
+    </style>
 </head>
 
 <body>
@@ -32,31 +38,36 @@ require_once("websiteHeader.html");
             <table cellspacing=0>
                 <tr>
                     <td>User ID</td>
-                    <td><input type="text" name="user_id" value="<?=$readProfile['user_id']?>"></td>
+                    <td><input type="text" name="user_id" value="<?= $readProfile['user_id'] ?>"></td>
+                </tr>
+                <tr>
+                    <td>Preview Profile Picture</td>
+                    <td>
+                        <img src="<?=$readProfile['profile_picture']?>">
+                    </td>
                 </tr>
                 <tr>
                     <td>Profile Picture</td>
                     <td>
-                        <input type="hidden" name="profile_picture" value="<?=$readProfile['profile_picture']?>">
                         <input type="file" name="profile_picture" accept="image/jpg, image/jpeg, image/png">
                     </td>
                 </tr>
                 <tr>
                     <td>Nama</td>
-                    <td><input type="text" name="nama" value="<?=$readProfile['nama']?>"></td>
+                    <td><input type="text" name="nama" value="<?= $readProfile['nama'] ?>"></td>
                 </tr>
                 <tr>
                     <td>Email</td>
-                    <td><input type="text" name="email" value="<?=$readProfile['email']?>"></td>
+                    <td><input type="text" name="email" value="<?= $readProfile['email'] ?>"></td>
                 </tr>
                 <tr>
                     <td>Password</td>
-                    <td><input type="password" name="password" value="<?=$readProfile['password']?>"></td>
+                    <td><input type="password" name="password" value="<?= $readProfile['password'] ?>"></td>
                 </tr>
                 <tr>
                     <td>Tipe User</td>
                     <td>
-                        <input type="hidden" name="tipe_user" value="<?=$readProfile['tipe_user']?>">
+                        <input type="hidden" name="tipe_user" value="<?= $readProfile['tipe_user'] ?>">
                         <input type="radio" id="buyer" name="tipe_user" value="buyer">Buyer
                         <input type="radio" id="seller" name="tipe_user" value="seller">Seller
                     </td>
@@ -73,15 +84,22 @@ require_once("websiteHeader.html");
 
         $newUser_id = $_POST['user_id'];
         $profile_picture_name = $_FILES['profile_picture']['name'];
-        $profile_picture_tmp_name = $_FILES['profile_picture']['tmp_name'];
-        $mime = mime_content_type($_FILES['profile_picture']['tmp_name']);
         $nama = $_POST['nama'];
         $email = $_POST['email'];
         $password = $_POST['password'];
         $tipe_user = $_POST['tipe_user'];
+        
+        if ($profile_picture_name != null) {
+            $profile_picture_tmp_name = $_FILES['profile_picture']['tmp_name'];
+            $mime = mime_content_type($_FILES['profile_picture']['tmp_name']);
 
-        updateProfile($user_id, $newUser_id, $profile_picture_name, $profile_picture_tmp_name, $mime, $nama, $email, $password, $tipe_user);
-        $_SESSION['user_id'] = $newUser_id;
+            updateProfile($user_id, $newUser_id, $profile_picture_name, $profile_picture_tmp_name, $mime, $nama, $email, $password, $tipe_user);
+            $_SESSION['user_id'] = $newUser_id;
+        } else {
+            updateProfile_noPict($user_id, $newUser_id, $nama, $email, $password, $tipe_user);
+            $_SESSION['user_id'] = $newUser_id;
+        }
+
     }
     ?>
 

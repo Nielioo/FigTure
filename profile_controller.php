@@ -112,6 +112,18 @@ function updateProfile($user_id, $newUser_id, $profile_picture_name, $profile_pi
     close($conn);
 }
 
+function updateProfile_noPict($user_id, $newUser_id, $nama, $email, $password, $tipe_user)
+{
+    $conn = connect();
+
+    if ($conn != null) {
+        $query = $conn->prepare("UPDATE `user_profile` SET `user_id`=?,`nama`=?,`email`=?,`password`=?,`tipe_user`=? WHERE `user_id`=?;");
+        $query->bind_param("ssssss", $newUser_id, $nama, $email, $password, $tipe_user, $user_id);
+        $query->execute() or die(mysqli_error($conn));
+    }
+    close($conn);
+}
+
 function deleteProfile($user_id)
 {
     $conn = connect();
