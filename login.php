@@ -16,7 +16,6 @@ require_once("websiteHeader.html");
 </head>
 
 <body>
-    <!-- halo -->
     <form action="login.php" method="post">
         email <input type="text" name="email"><br>
         password <input type="password" name="password"><br>
