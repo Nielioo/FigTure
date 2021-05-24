@@ -35,7 +35,7 @@ require_once("websiteHeader.html");
     }
     ?>
 
-    <form action="createStockItem.php" method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data">
         <label>Judul : </label><input type="text" name="judul" required><br />
         <label>Deskripsi Gambar : </label><input type="text" name="deskripsi" required><br />
         <label>Gambar : </label><input type="file" name="gambar" accept="image/jpg, image/jpeg, image/png" required><br />
