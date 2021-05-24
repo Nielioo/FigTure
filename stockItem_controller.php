@@ -131,8 +131,6 @@ function readStockItemByUserId($user_id)
                     $data['category'] = $row['category'];
                     array_push($image_data, $data);
                 }
-
-                // TODO Return result
             } else {
                 dataIsNull("image list");
             }
