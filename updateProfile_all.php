@@ -19,29 +19,36 @@ require_once("websiteHeader.html");
 
     <h1 class="title">Update Profile</h1>
 
+    <?php
+    session_start();
+    $user_id = $_SESSION['user_id'];
+
+    $readProfile = readProfile($user_id);
+    ?>
+
     <div class="container">
 
         <form action="updateProfile.php" method="post" enctype="multipart/form-data">
             <table cellspacing=0>
                 <tr>
                     <td>User ID</td>
-                    <td><input type="text" name="user_id" required></td>
+                    <td><input type="text" name="user_id" value="<?=$readProfile['user_id']?>"></td>
                 </tr>
                 <tr>
                     <td>Profile Picture</td>
-                    <td><input type="file" name="profile_picture" accept="image/jpg, image/jpeg, image/png" required></td>
+                    <td><input type="file" name="profile_picture" accept="image/jpg, image/jpeg, image/png" value="<?=$readProfile['profile_picture']?>"></td>
                 </tr>
                 <tr>
                     <td>Nama</td>
-                    <td><input type="text" name="nama" required></td>
+                    <td><input type="text" name="nama" value="<?=$readProfile['nama']?>"></td>
                 </tr>
                 <tr>
                     <td>Email</td>
-                    <td><input type="text" name="email" required></td>
+                    <td><input type="text" name="email" value="<?=$readProfile['email']?>"></td>
                 </tr>
                 <tr>
                     <td>Password</td>
-                    <td><input type="password" name="password" required></td>
+                    <td><input type="password" name="password" value="<?=$readProfile['password']?>"></td>
                 </tr>
                 <tr>
                     <td>Tipe User</td>
