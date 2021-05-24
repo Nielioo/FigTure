@@ -53,9 +53,9 @@ require_once("websiteHeader.html");
                 <tr>
                     <td>Tipe User</td>
                     <td>
+                        <input type="hidden" name="tipe_user" value="<?=$readProfile['tipe_user']?>">
                         <input type="radio" id="buyer" name="tipe_user" value="buyer">Buyer
                         <input type="radio" id="seller" name="tipe_user" value="seller">Seller
-                        <input type="hidden" name="tipe_user" value="<?=$readProfile['tipe_user']?>">
                     </td>
                 </tr>
             </table> <br>
