@@ -31,21 +31,16 @@ function createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gamba
                     $image_id = $connection->insert_id;
 
                     // Add image category to image_category
-                    // FIXME more than 1 category is detected as category 1
-                    foreach($kategori as $category) {
-                        if (validateCategory($category)) {
-                            $category_id = getCategoryID($category);
+                    if (validateCategory($kategori)) {
+                        $category_id_list = getCategoryID($kategori);
 
-                            if ($category_id > 0) {
-                                $query = $connection->prepare("INSERT INTO `image_category`(`image_id`, `category_id`) VALUES (?, ?)");
-                                $query->bind_param("ii", $image_id, $category_id);
-                                $result = $query->execute() or die(mysqli_error($connection));
-                            } else {
-                                echo "category_id:" . $category_id  . " is not valid";
-                            }
-                        } else {
-                            failedToValidate("category");
+                        foreach ($category_id_list as $category_id) {
+                            $query = $connection->prepare("INSERT INTO `image_category`(`image_id`, `category_id`) VALUES (?, ?)");
+                            $query->bind_param("ii", $image_id, $category_id);
+                            $result = $query->execute() or die(mysqli_error($connection));
                         }
+                    } else {
+                        failedToValidate("category");
                     }
 
 
@@ -116,20 +111,36 @@ function readStockItemByUserId($user_id)
                     stock_item.image_id = image_category.image_id AND image_category.category_id = image_available_category.id
                 )
             WHERE
-                stock_item.user_id = ?");
+                stock_item.user_id = ?
+            ORDER BY
+                stock_item.id");
             $query->bind_param("s", $user_id);
             $query->execute() or die(mysqli_error($connection));
 
             $result = $query->get_result();
             if (!empty($result)) {
+                $row_count = 0;
                 while ($row = $result->fetch_assoc()) {
                     $data['judul'] = $row['judul'];
                     $data['deskripsi'] = $row['deskripsi'];
                     $data['harga'] = $row['harga'];
                     $data['gambar'] = $row['gambar'];
                     $data['type'] = $row['type'];
-                    $data['category'] = $row['category'];
-                    array_push($image_data, $data);
+                    $data['category'] = array();
+                    array_push($data['category'], $row['category']);
+                    // $data['category'] =  $row['category'];
+
+                    if ($row_count > 0) {
+                        if ($image_data[$row_count - 1]['gambar'] === $data['gambar']) {
+                            array_push($image_data[$row_count - 1]['category'], $row['category']);
+                        } else {
+                            array_push($image_data, $data);
+                            $row_count++;
+                        }
+                    } else {
+                        array_push($image_data, $data);
+                        $row_count++;
+                    }
                 }
             } else {
                 dataIsNull("image list");
@@ -288,12 +299,18 @@ function getTypeID($type)
     return $type_id;
 }
 
-function validateCategory($category)
+function validateCategory($category_list)
 {
-    $category = ucfirst(strtolower($category));
-    $available_category = getCategoryList();
+    foreach ($category_list as $category) {
+        $category = ucfirst(strtolower($category));
+        $available_category = getCategoryList();
 
-    return in_array($category, $available_category);
+        if (!in_array($category, $available_category)) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 function getCategoryList()
@@ -325,33 +342,38 @@ function getCategoryList()
     return $category_list;
 }
 
-function getCategoryID($category)
+function getCategoryID($category_list)
 {
-    $category = ucfirst(strtolower($category));
-    $category_id = -1;
+    $category_id_list = array();
 
     $connection = connect();
 
-    if (!is_null($connection)) {
-        $query = $connection->prepare("SELECT `id` FROM `image_available_category` WHERE `category`=?");
-        $query->bind_param("i", $category);
-        $query->execute();
+    foreach ($category_list as $category) {
+        $category = ucfirst(strtolower($category));
 
-        $result = $query->get_result();
-        $data = $result->fetch_assoc();
+        if (!is_null($connection)) {
+            $query = $connection->prepare("SELECT `id` FROM `image_available_category` WHERE `category`=?");
+            $query->bind_param("s", $category);
+            $query->execute();
 
-        if (!empty($data)) {
-            $category_id = $data['id'];
+            $result = $query->get_result();
+            $data = $result->fetch_assoc();
+
+            if (!empty($data)) {
+                echo "<br /> category : " . $data['id'];
+                array_push($category_id_list, $data['id']);
+            } else {
+                dataIsNull("category id");
+            }
         } else {
-            dataIsNull("category id");
+            failedToConnect();
         }
-    } else {
-        failedToConnect();
     }
 
     close($connection);
+    
 
-    return $category_id;
+    return $category_id_list;
 }
 
 function dataIsNull($string)

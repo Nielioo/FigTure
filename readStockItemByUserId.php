@@ -38,6 +38,7 @@ require_once("websiteHeader.html");
             </tr>
             <?php
             foreach ($image_list as $image) {
+                $category_list = implode(",", $image['category']);
             ?>
                 <tr>
                     <td><?= $image['judul'] ?></td>
@@ -45,7 +46,7 @@ require_once("websiteHeader.html");
                     <td><?= $image['harga'] ?></td>
                     <td><img src="<?= $image['gambar'] ?>"></td>
                     <td><?= $image['type'] ?></td>
-                    <td><?= $image['category'] ?></td>
+                    <td><?= $category_list ?></td>
                 </tr>
         <?php
             }
