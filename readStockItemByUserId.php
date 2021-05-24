@@ -24,11 +24,9 @@ require_once("websiteHeader.html");
     <?php
     if (isset($_POST['search'])) {
         session_start();
-        // $user_id = $_SESSION['user_id'];
-        $user_id = $_POST['user_id'];
+        $user_id = $_SESSION['user_id'];
         $image_list = readStockItemByUserId($user_id);
     ?>
-        <br />
         <table cellspacing=0 border=1>
             <tr>
                 <th>Judul</th>
@@ -54,8 +52,7 @@ require_once("websiteHeader.html");
         }
         ?>
 
-        <form action="readStockItemByUserId.php" method="POST" enctype="multipart/form-data">
-            <label>User ID : </label><input type="text" name="user_id">
+        <form method="POST">
             <input type="submit" id="search" name="search" value="Search">
         </form>
 </body>
