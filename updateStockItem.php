@@ -21,20 +21,15 @@ require_once("websiteHeader.html");
 
 <body>
     <?php
-    // TODO add max file size on upload
-    // https://stackoverflow.com/questions/6327965/html-upload-max-file-size-does-not-appear-to-work
-
     $category_available_list = getCategoryList();
 
     $image_id = $_GET['image_id'];
     $image_data = readStockItemByImageId($image_id);
     $image = $image_data[0]; // TODO Risky index 0, need to be tested more
-    $category_list = implode(",", $image['category']);
 
     // Unused data from readStockItemByImageId
     // $image_data['gambar'];
     // $image_data['type'];
-    // $category_list;
 
     if (isset($_POST['submit'])) {
         if (isset($_POST['kategori'])) {
@@ -55,9 +50,7 @@ require_once("websiteHeader.html");
     }
     ?>
 
-    <form method="POST" enctype="multipart/form-data">
-        <!-- TODO Checked the category -->
-
+    <form method="POST">
         <label>Judul : </label><input type="text" name="judul" value="<?= $image['judul'] ?>" required><br />
         <label>Deskripsi Gambar : </label><input type="text" name="deskripsi" value="<?= $image['deskripsi'] ?>" required><br />
         <img src="<?= $image['gambar'] ?>"><br />
@@ -68,9 +61,16 @@ require_once("websiteHeader.html");
             if ($list_count === 5) {
                 echo "<br />";
             }
+
+            if (in_array($category, $image['category'])) {
         ?>
-            <input type="checkbox" id="<?= $category ?>" name="kategori[]" value="<?= $category ?>"><label for="<?= $category ?>"><?= $category ?></label>
+                <input type="checkbox" id="<?= $category ?>" name="kategori[]" value="<?= $category ?>" checked><label for="<?= $category ?>"><?= $category ?></label>
+            <?php
+            } else {
+            ?>
+                <input type="checkbox" id="<?= $category ?>" name="kategori[]" value="<?= $category ?>"><label for="<?= $category ?>"><?= $category ?></label>
         <?php
+            }
         }
         $list_count++;
         ?>

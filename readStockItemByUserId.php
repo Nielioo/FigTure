@@ -10,7 +10,7 @@ require_once("websiteHeader.html");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Read Stock Image</title>
+    <title>Read Stock Item List</title>
     <style>
         img {
             max-width: 75;
@@ -40,6 +40,7 @@ require_once("websiteHeader.html");
             <th>Gambar</th>
             <th>Tipe</th>
             <th>Kategori</th>
+            <th>View</th>
             <th>Edit</th>
         </tr>
         <?php
@@ -53,11 +54,13 @@ require_once("websiteHeader.html");
                 <td><img src="<?= $image['gambar'] ?>"></td>
                 <td><?= $image['type'] ?></td>
                 <td><?= $category_list ?></td>
+                <td><a href="readStockItemByImageId.php?image_id=<?=$image['image_id']?>">View</a></td>
                 <td><a href="updateStockItem.php?image_id=<?=$image['image_id']?>">Edit</a></td>
             </tr>
         <?php
         }
         ?>
+    </table>
 </body>
 
 </html>
