@@ -18,7 +18,7 @@ require_once("websiteHeader.html");
     // TODO add max file size on upload
     // https://stackoverflow.com/questions/6327965/html-upload-max-file-size-does-not-appear-to-work
 
-    $category_list = getCategoryList();
+    $category_available_list = getCategoryList();
 
     if (isset($_POST['submit'])) {
         session_start();
@@ -44,15 +44,15 @@ require_once("websiteHeader.html");
         <label>Kategori : </label><br />
         <?php
         $list_count = 0;
-        foreach ($category_list as $category) {
+        foreach ($category_available_list as $category) {
+            if ($list_count === 5) {
+                echo "<br />";
+            }
         ?>
-            <input type="checkbox" id="<?=$category?>" name="kategori[]" value="<?=$category?>"><label for="<?=$category?>"><?=$category?></label>
+            <input type="checkbox" id="<?= $category ?>" name="kategori[]" value="<?= $category ?>"><label for="<?= $category ?>"><?= $category ?></label>
         <?php
         }
         $list_count++;
-        if ($list_count === 5) {
-            echo "<br />";
-        }
         ?>
         <br />
         <label>Harga : </label><input type="number" name="harga" required><br />
