@@ -11,12 +11,20 @@ require_once("websiteHeader.html");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Stock Item</title>
+    <style>
+        img {
+            max-width: 200px;
+            max-height: 300px;
+        }
+    </style>
 </head>
 
 <body>
     <?php
     // TODO add max file size on upload
     // https://stackoverflow.com/questions/6327965/html-upload-max-file-size-does-not-appear-to-work
+
+    $category_available_list = getCategoryList();
 
     $image_id = $_GET['image_id'];
     $image_data = readStockItemByImageId($image_id);
@@ -29,20 +37,17 @@ require_once("websiteHeader.html");
     // $category_list;
 
     if (isset($_POST['submit'])) {
+        // Image cannot be edited as it may interrupt the list of items someone bought
+
         session_start();
         $user_id = $_SESSION['user_id'];
         $judul = $_POST['judul'];
         $deskripsi = $_POST['deskripsi'];
         $harga = $_POST['harga'];
         $kategori = $_POST['kategori'];
-        $gambar_name = $_FILES['gambar']['name'];
-        $gambar_tmp_name = $_FILES['gambar']['tmp_name'];
-        $mime = mime_content_type($_FILES['gambar']['tmp_name']);
         $image_id = $_POST['image_id'];
 
-        if (($_FILES['gambar']['name'] != "")) {
-            updateStockItemByImageId($user_id, $judul, $deskripsi, $harga, $kategori, $gambar_name, $gambar_tmp_name, $mime, $image_id);
-        }
+        updateStockItemByImageId($user_id, $judul, $deskripsi, $harga, $kategori, $image_id);
     }
     ?>
 
@@ -51,12 +56,23 @@ require_once("websiteHeader.html");
 
         <label>Judul : </label><input type="text" name="judul" value="<?= $image['judul'] ?>" required><br />
         <label>Deskripsi Gambar : </label><input type="text" name="deskripsi" value="<?= $image['deskripsi'] ?>" required><br />
-        <label>Gambar : </label><input type="file" name="gambar" accept="image/jpg, image/jpeg, image/png" ><br />
-        <label>Kategori : </label>
-        <input type="checkbox" id="people" name="kategori[]" value="people"><label for="people">People</label>
-        <input type="checkbox" id="animal" name="kategori[]" value="animal"><label for="animal">Animal</label><br />
+        <img src="<?= $image['gambar'] ?>"><br />
+        <label>Kategori : </label><br />
+        <?php
+        $list_count = 0;
+        foreach ($category_available_list as $category) {
+            if ($list_count === 5) {
+                echo "<br />";
+            }
+        ?>
+            <input type="checkbox" id="<?= $category ?>" name="kategori[]" value="<?= $category ?>"><label for="<?= $category ?>"><?= $category ?></label>
+        <?php
+        }
+        $list_count++;
+        ?>
+        <br />
         <label>Harga : </label><input type="number" name="harga" value="<?= $image['harga'] ?>" required><br />
-        <input type="hidden" name="image_id" value="<?=$image_id?>">
+        <input type="hidden" name="image_id" value="<?= $image_id ?>">
         <input type="submit" id="submit" name="submit" value="Submit">
 
         <!-- Cursor:Pointer in css for hand icon
