@@ -18,6 +18,8 @@ require_once("websiteHeader.html");
     // TODO add max file size on upload
     // https://stackoverflow.com/questions/6327965/html-upload-max-file-size-does-not-appear-to-work
 
+    $category_list = getCategoryList();
+
     if (isset($_POST['submit'])) {
         session_start();
         $user_id = $_SESSION['user_id'];
@@ -39,9 +41,20 @@ require_once("websiteHeader.html");
         <label>Judul : </label><input type="text" name="judul" required><br />
         <label>Deskripsi Gambar : </label><input type="text" name="deskripsi" required><br />
         <label>Gambar : </label><input type="file" name="gambar" accept="image/jpg, image/jpeg, image/png" required><br />
-        <label>Kategori : </label>
-        <input type="checkbox" id="people" name="kategori[]" value="people"><label for="people">People</label>
-        <input type="checkbox" id="animal" name="kategori[]" value="animal"><label for="animal">Animal</label><br />
+        <label>Kategori : </label><br />
+        <?php
+        $list_count = 0;
+        foreach ($category_list as $category) {
+        ?>
+            <input type="checkbox" id="<?=$category?>" name="kategori[]" value="<?=$category?>"><label for="<?=$category?>"><?=$category?></label>
+        <?php
+        }
+        $list_count++;
+        if ($list_count === 5) {
+            echo "<br />";
+        }
+        ?>
+        <br />
         <label>Harga : </label><input type="number" name="harga" required><br />
         <input type="submit" id="submit" name="submit" value="Submit">
 
