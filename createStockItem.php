@@ -21,18 +21,22 @@ require_once("websiteHeader.html");
     $category_available_list = getCategoryList();
 
     if (isset($_POST['submit'])) {
-        session_start();
-        $user_id = $_SESSION['user_id'];
-        $judul = $_POST['judul'];
-        $deskripsi = $_POST['deskripsi'];
-        $harga = $_POST['harga'];
-        $kategori = $_POST['kategori'];
-        $gambar_name = $_FILES['gambar']['name'];
-        $gambar_tmp_name = $_FILES['gambar']['tmp_name'];
-        $mime = mime_content_type($_FILES['gambar']['tmp_name']);
+        if (isset($_POST['kategori'])) {
+            session_start();
+            $user_id = $_SESSION['user_id'];
+            $judul = $_POST['judul'];
+            $deskripsi = $_POST['deskripsi'];
+            $harga = $_POST['harga'];
+            $kategori = $_POST['kategori'];
+            $gambar_name = $_FILES['gambar']['name'];
+            $gambar_tmp_name = $_FILES['gambar']['tmp_name'];
+            $mime = mime_content_type($_FILES['gambar']['tmp_name']);
 
-        if (($_FILES['gambar']['name'] != "")) {
-            $item_id = createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gambar_name, $gambar_tmp_name, $mime);
+            if (($_FILES['gambar']['name'] != "")) {
+                $item_id = createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gambar_name, $gambar_tmp_name, $mime);
+            }
+        } else {
+            echo "No category has been selected";
         }
     }
     ?>

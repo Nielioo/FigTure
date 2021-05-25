@@ -37,17 +37,21 @@ require_once("websiteHeader.html");
     // $category_list;
 
     if (isset($_POST['submit'])) {
-        // Image cannot be edited as it may interrupt the list of items someone bought
+        if (isset($_POST['kategori'])) {
+            // Image cannot be edited as it may interrupt the list of items someone bought
 
-        session_start();
-        $user_id = $_SESSION['user_id'];
-        $judul = $_POST['judul'];
-        $deskripsi = $_POST['deskripsi'];
-        $harga = $_POST['harga'];
-        $kategori = $_POST['kategori'];
-        $image_id = $_POST['image_id'];
+            session_start();
+            $user_id = $_SESSION['user_id'];
+            $judul = $_POST['judul'];
+            $deskripsi = $_POST['deskripsi'];
+            $harga = $_POST['harga'];
+            $kategori = $_POST['kategori'];
+            $image_id = $_POST['image_id'];
 
-        updateStockItemByImageId($user_id, $judul, $deskripsi, $harga, $kategori, $image_id);
+            updateStockItemByImageId($user_id, $judul, $deskripsi, $harga, $kategori, $image_id);
+        } else {
+            echo "No category has been selected";
+        }
     }
     ?>
 
