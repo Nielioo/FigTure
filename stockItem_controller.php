@@ -90,6 +90,7 @@ function createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gamba
 function readAllStockItem()
 {
     $image_data = array();
+    $deleted_item = "@deleted_item";
 
     $connection = connect();
 
@@ -110,9 +111,12 @@ function readAllStockItem()
             INNER JOIN image_available_category ON(
                     stock_item.image_id = image_category.image_id AND image_category.category_id = image_available_category.id
                 )
+            WHERE NOT
+                    stock_item.user_id = ?
             ORDER BY
                 stock_item.id"
         );
+        $query->bind_param("s", $deleted_item);
         $query->execute() or die(mysqli_error($connection));
 
         $result = $query->get_result();
@@ -328,7 +332,7 @@ function updateStockItemByImageId($user_id, $judul, $deskripsi, $harga, $kategor
 
 
             // Update stock item to stock_item
-            $query = $connection->prepare("UPDATE `stock_item` SET `judul`=?,`deskripsi`=?,`harga`=? WHERE `user_id`=? AND `image_id`=?;");
+            $query = $connection->prepare("UPDATE `stock_item` SET `judul`=?,`deskripsi`=?,`harga`=? WHERE `user_id`=? AND `image_id`=?");
             $query->bind_param("ssisi", $judul, $deskripsi, $harga, $user_id, $image_id);
             $query->execute() or die(mysqli_error($connection));
         } else {
@@ -341,17 +345,21 @@ function updateStockItemByImageId($user_id, $judul, $deskripsi, $harga, $kategor
     close($connection);
 }
 
-// TODO recheck
-function deleteStockItemByUserId($user_id)
+function deleteStockItemByImageId($user_id, $image_id)
 {
-    $conn = connect();
+    $deleted_item = "@deleted_item";
+    
+    $connection = connect();
 
-    if ($conn != null) {
-        $query = $conn->prepare("DELETE FROM `stock_item` WHERE `user_id`=?;");
-        $query->bind_param("s", $user_id);
-        $query->execute() or die(mysqli_error($conn));
+    if ($connection != null) {
+        if (!is_null($user_id) && !is_null($image_id)) {
+            $query = $connection->prepare("UPDATE `stock_item` SET `user_id`=? WHERE `user_id`=? AND `image_id`=?");
+            $query->bind_param("ssi", $deleted_item, $user_id, $image_id);
+            $query->execute() or die(mysqli_error($connection));
+        }
     }
-    close($conn);
+
+    close($connection);
 }
 
 function validateType($mime_type)

@@ -42,6 +42,7 @@ require_once("websiteHeader.html");
             <th>Kategori</th>
             <th>View</th>
             <th>Edit</th>
+            <th>Delete</th>
         </tr>
         <?php
         foreach ($image_list as $image) {
@@ -56,6 +57,7 @@ require_once("websiteHeader.html");
                 <td><?= $category_list ?></td>
                 <td><a href="readStockItemByImageId.php?image_id=<?=$image['image_id']?>">View</a></td>
                 <td><a href="updateStockItem.php?image_id=<?=$image['image_id']?>">Edit</a></td>
+                <td><a href="deleteStockItemByImageId.php?image_id=<?=$image['image_id']?>">Delete</a></td>
             </tr>
         <?php
         }
