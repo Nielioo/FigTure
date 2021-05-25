@@ -38,6 +38,7 @@ require_once("websiteHeader.html");
             <th>Gambar</th>
             <th>Tipe</th>
             <th>Kategori</th>
+            <th>View</th>
         </tr>
         <?php
         foreach ($image_list as $image) {
@@ -50,10 +51,12 @@ require_once("websiteHeader.html");
                 <td><img src="<?= $image['gambar'] ?>"></td>
                 <td><?= $image['type'] ?></td>
                 <td><?= $category_list ?></td>
+                <td><a href="readStockItemByImageId.php?image_id=<?=$image['image_id']?>">View</a></td>
             </tr>
         <?php
         }
         ?>
+    </table>
 </body>
 
 </html>
