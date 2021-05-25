@@ -1,3 +1,30 @@
 /* 
-
+color palette:
+#026670 - dark green
+#9fedd7 - light green
+#fef9c7 - light yellow
+#fce181 - yelow
+#edeae5 - light grey
 */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: white;
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+}
+
+.bgImage {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+}
