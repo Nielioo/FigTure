@@ -44,6 +44,7 @@ require_once("websiteHeader.html");
             $image_id = $_POST['image_id'];
 
             updateStockItemByImageId($user_id, $judul, $deskripsi, $harga, $kategori, $image_id);
+            header("location: readStockItemByUserId.php");
         } else {
             echo "No category has been selected";
         }
