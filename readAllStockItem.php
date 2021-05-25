@@ -17,6 +17,11 @@ require_once("websiteHeader.html");
             max-height: 100;
             object-fit: cover;
         }
+
+        table, th, tr, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
     </style>
 </head>
 
@@ -25,7 +30,7 @@ require_once("websiteHeader.html");
     $image_list = readAllStockItem();
     ?>
     <br />
-    <table cellspacing=0 border=1>
+    <table>
         <tr>
             <th>Judul</th>
             <th>Deskripsi</th>
