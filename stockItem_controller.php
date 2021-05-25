@@ -133,6 +133,7 @@ function readAllStockItem()
                 if ($row_count > 0) {
                     if ($image_data[$row_count - 1]['gambar'] === $data['gambar']) {
                         array_push($image_data[$row_count - 1]['category'], $row['category']);
+                        sort($image_data[$row_count - 1]['category']);
                     } else {
                         array_push($image_data, $data);
                         $row_count++;
@@ -203,6 +204,7 @@ function readStockItemByUserId($user_id)
                     if ($row_count > 0) {
                         if ($image_data[$row_count - 1]['gambar'] === $data['gambar']) {
                             array_push($image_data[$row_count - 1]['category'], $row['category']);
+                            sort($image_data[$row_count - 1]['category']);
                         } else {
                             array_push($image_data, $data);
                             $row_count++;
@@ -276,6 +278,7 @@ function readStockItemByImageId($image_id)
                     if ($row_count > 0) {
                         if ($image_data[$row_count - 1]['gambar'] === $data['gambar']) {
                             array_push($image_data[$row_count - 1]['category'], $row['category']);
+                            sort($image_data[$row_count - 1]['category']);
                         } else {
                             array_push($image_data, $data);
                             $row_count++;
@@ -301,73 +304,40 @@ function readStockItemByImageId($image_id)
 }
 
 // FIXME Finish the if else condition etc
-function updateStockItemByImageId($user_id, $judul, $deskripsi, $harga, $kategori, $gambar_name, $gambar_tmp_name, $mime, $image_id)
+function updateStockItemByImageId($user_id, $judul, $deskripsi, $harga, $kategori, $image_id)
 {
     $connection = connect();
 
     if ($connection != null) {
         if (!is_null($user_id) && !is_null($judul) && !is_null($deskripsi) && !is_null($harga)) {
-            if (!is_null($gambar_name) && !is_null($gambar_tmp_name) && !is_null($mime)) {
-                if (!is_null($kategori)) {
-                    // Check image type
-                    strtolower($mime);
-                    $mime_type = explode("/", $mime, 2);
+            // if (!is_null($kategori)) {
+            // Update image category to image_category
+            foreach ($kategori as $category) {
+                if (validateCategory($category)) {
+                    $category_id = getCategoryID($category);
 
-                    if (validateType($mime_type)) {
-                        // Update image file to image_file
-                        $target_dir = "stock_item/";
-                        $path = pathinfo($_FILES['gambar']['name']);
-                        $gambar_tmp_name = $_FILES['gambar']['tmp_name'];
-                        $basename = $path['basename'];
-                        $path_basename = $target_dir . nowFileFormat() . "_" . str_replace(' ', '_', $basename);
-
-                        if (!file_exists($path_basename)) {
-                            move_uploaded_file($gambar_tmp_name, $path_basename);
-
-                            $query = $connection->prepare("UPDATE `image_file` SET `gambar`=? WHERE `id`=?");
-                            $query->bind_param("ss", $path_basename, $image_id);
-                            $query->execute() or die(mysqli_error($connection));
-                            // Get insert id from image_file
-                            $image_id = $connection->insert_id;
-
-                            // Update image category to image_category
-                            foreach ($kategori as $category) {
-                                if (validateCategory($category)) {
-                                    $category_id = getCategoryID($category);
-
-                                    if ($category_id > 0) {
-                                        // FIXME updating category is not that simple for images with more than one category
-                                        $query = $connection->prepare("UPDATE `image_category` SET `category_id`=? WHERE `image_id`=?");
-                                        $query->bind_param("iis", $image_id, $category_id, $user_id);
-                                        $query->execute() or die(mysqli_error($connection));
-                                    } else {
-                                        echo "category_id:" . $category_id  . " is not valid";
-                                    }
-                                } else {
-                                    failedToValidate("category");
-                                }
-                            }
-
-
-                            // Get type_id
-                            $type_id = getTypeID($mime_type[1]);
-
-
-                            // Update stock item to stock_item
-                            $query = $connection->prepare("INSERT INTO `stock_item`(`user_id`, `judul`, `deskripsi`, `harga`, `image_id`, `type_id`) VALUES (?, ?, ?, ?, ?, ?)");
-                            $query = $connection->prepare("UPDATE `stock_item` SET `user_id`=?,`judul`=?,`deskripsi`=?,`harga`=?,`image_id`=?,`type_id`=? WHERE `user_id`=?;");
-                            $query->bind_param("sssiiis", $user_id, $judul, $deskripsi, $harga, $image_id, $type_id, $user_id);
-                            $query->execute() or die(mysqli_error($connection));
-                        } else {
-                            echo "File exists";
-                        }
+                    if ($category_id > 0) {
+                        // FIXME updating category is not that simple for images with more than one category
+                        $query = $connection->prepare("UPDATE `image_category` SET `category_id`=? WHERE `image_id`=?");
+                        $query->bind_param("iis", $image_id, $category_id, $user_id);
+                        $query->execute() or die(mysqli_error($connection));
+                    } else {
+                        echo "category_id:" . $category_id  . " is not valid";
                     }
                 } else {
-                    dataIsNull("kategori");
+                    failedToValidate("category");
                 }
-            } else {
-                dataIsNull("gambar");
             }
+
+
+            // Update stock item to stock_item
+            $query = $connection->prepare("INSERT INTO `stock_item`(`user_id`, `judul`, `deskripsi`, `harga`, `image_id`, `type_id`) VALUES (?, ?, ?, ?, ?, ?)");
+            $query = $connection->prepare("UPDATE `stock_item` SET `user_id`=?,`judul`=?,`deskripsi`=?,`harga`=?,`image_id`=?,`type_id`=? WHERE `user_id`=?;");
+            $query->bind_param("sssiiis", $user_id, $judul, $deskripsi, $harga, $image_id, $type_id, $user_id);
+            $query->execute() or die(mysqli_error($connection));
+            // } else {
+            //     dataIsNull("kategori");
+            // }
         } else {
             dataIsNull("update stock item");
         }
@@ -470,7 +440,7 @@ function getCategoryList()
     $connection = connect();
 
     if (!is_null($connection)) {
-        $query = $connection->prepare("SELECT `category` FROM `image_available_category`");
+        $query = $connection->prepare("SELECT `category` FROM `image_available_category` ORDER BY `category`");
         $query->execute();
 
         $result = $query->get_result();
@@ -539,3 +509,4 @@ function failedToConnect()
 {
     echo "Failed connecting to database";
 }
+?>
