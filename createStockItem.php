@@ -49,14 +49,14 @@ require_once("websiteHeader.html");
         <?php
         $list_count = 0;
         foreach ($category_available_list as $category) {
-            if ($list_count === 5) {
+            if ($list_count % 5 === 0 && $list_count !== 0) {
                 echo "<br />";
             }
         ?>
             <input type="checkbox" id="<?= $category ?>" name="kategori[]" value="<?= $category ?>"><label for="<?= $category ?>"><?= $category ?></label>
         <?php
-        }
         $list_count++;
+        }
         ?>
         <br />
         <label>Harga : </label><input type="number" name="harga" required><br />
