@@ -12,6 +12,7 @@ nav a {
 
 nav a:hover {
     color: black;
+    transition: color 0.3s;
 }
 
 .btnHighlight {
@@ -23,6 +24,7 @@ nav a:hover {
 .btnHighlight:hover {
     background-color: #009aa8;
     color: white;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .btnDivider {
