@@ -1,3 +1,27 @@
+/* 
+color palette:
+#026670 - dark green
+#9fedd7 - light green
+#fef9c7 - light yellow
+#fce181 - yelow
+#edeae5 - light grey
+*/
+
+@import url("https://rsms.me/inter/inter.css");
+html {
+  font-family: "Inter", sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
 nav {
     background-color: #edeae5;
     padding: 10px;
