@@ -11,7 +11,7 @@ require_once("websiteHeader.html");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Stock Item</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login_register_style.css">
     <link rel="stylesheet" href="navigation_bar_style.css">
 </head>
 
