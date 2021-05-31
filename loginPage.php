@@ -28,11 +28,13 @@ require_once("websiteHeader.html");
             </div>
 
             <form class="form" action="loginPage.php" method="post">
-                <input type="email" class="form-field animation a3" placeholder="Email Address">
-                <input type="password" class="form-field animation a4" placeholder="Password">
-                <p class="animation a5"><a href="#">Forgot Password</a></p>
-
+                <input type="email" class="form-field animation a3" name="email" placeholder="Email Address">
+                <input type="password" class="form-field animation a4" name="password" placeholder="Password">
+                <p class="forgotPass animation a5"><a href="#">Forgot Password</a></p>
+                
                 <input class="form-button animation a6" type="submit" name="login" value="LOGIN">
+                
+                <p class="reglog animation a7">Don't have an account? <a href="registerPage.php">Join Now</a></p>
             </form>
 
             <?php
