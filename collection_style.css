@@ -3,7 +3,7 @@
 }
 
 .collection {
-  column-count: 4;
+  column-count: 8;
   column-gap: 2px;
   transition: 0.3s;
 }
@@ -54,4 +54,16 @@
   transition: 0.3s;
   margin-left: auto;
   margin-right: auto;
+}
+
+@media screen and (max-width: 1280px) {
+  .collection {
+    column-count: 6;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .collection {
+    column-count: 4;
+  }
 }
