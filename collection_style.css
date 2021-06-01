@@ -81,7 +81,7 @@ img {
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 850px) {
   .collection {
     column-count: 4;
   }

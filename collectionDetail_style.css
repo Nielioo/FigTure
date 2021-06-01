@@ -112,3 +112,15 @@ h4 {
 .image_category {
   padding: 20px;
 }
+
+@media screen and (max-width: 1280px) {
+  .collection_figure {
+    max-height: 500px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .collection_figure {
+    max-height: 300px;
+  }
+}
