@@ -18,35 +18,48 @@
     ?>
 
     <div class="page">
-        <div class="flex_container">
-            <div class="left_container">
-                <?php
-                $image_id = $_GET['image_id'];
-                $image_data = readStockItemByImageId($image_id);
-                $image = $image_data[0]; // TODO Risky index 0, need to be tested more
-                $category_list = implode(",", $image['category']);
-                ?>
-                <figure class="collection_figure">
-                    <img src="<?= $image['gambar'] ?>" id="image" class="collection_image">
-                </figure>
-            </div>
-            <div class="right_container">
-                <div class="image_file">
-                    <label>File dimension</label><br />
-                    <label id="image_dimension"></label><br /><br />
-                    <label>File format</label><br />
-                    <label><?= $image['type'] ?></label><br />
+        <div class="container">
+            <div class="flex_container">
+                <div class="left_container">
+                    <?php
+                    $image_id = $_GET['image_id'];
+                    $image_data = readStockItemByImageId($image_id);
+                    $image = $image_data[0]; // TODO Risky index 0, need to be tested more
+                    $category_list = implode(", ", $image['category']);
+                    ?>
+                    <figure class="collection_figure">
+                        <img src="<?= $image['gambar'] ?>" id="image" class="collection_image">
+                    </figure>
                 </div>
-                <div class="image_purchase">
-                    <label>Price</label><br />
-                    <label><?= $image['harga'] ?></label><br />
-                    <a href="#" class="purchase_link">Purchase image</a>
+                <div class="right_container">
+                    <div class="image_file">
+                        <label>File dimension</label><br />
+                        <label id="image_dimension"></label><br /><br />
+                        <label>File format</label><br />
+                        <label><?= $image['type'] ?></label><br />
+                    </div>
+                    <div class="image_purchase">
+                        <label>Price</label><br />
+                        <label><?= $image['harga'] ?></label><br />
+                        <a href="#" class="purchase_link">Purchase image</a>
+                    </div>
+                </div>
+            </div>
+            <div class="image_info">
+                <h3 class="image_title"><?= $image['judul'] ?></h3>
+                <hr />
+                <div class="image_description">
+                    <h4>Description</h4>
+                    <?= $image['deskripsi'] ?>
+                </div>
+                <hr />
+                <div class="image_category">
+                    <h4>Categories</h4>
+                    <?= $category_list ?>
                 </div>
             </div>
         </div>
-        <div class="image_info">
 
-        </div>
     </div>
 
     <script>
