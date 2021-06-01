@@ -83,7 +83,6 @@
                 header("location: profilePage.php");
             }
             ?>
-            ?>
 
         </div>
 

@@ -11,10 +11,14 @@
 
 <body>
     <?php
+    require_once("stockItem_controller.php");
 
-    require_once("profile_controller.php");
-    require_once("websiteHeader.html");
-
+    session_start();
+    if (empty($_SESSION['user_id'])) {
+        require_once("websiteHeader.html");
+    } else {
+        require_once("websiteHeader_after.html");
+    }
     ?>
     About Us
 </body>
