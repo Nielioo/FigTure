@@ -40,7 +40,7 @@ require_once("websiteHeader.html");
             </div>
             <div class="profile-option">
                 <div class="notification">
-                    <i class="fa-solid fa-bell"></i>
+                    <!-- <i class="fa-solid fa-bell"></i> -->
                     <span class="alert-message">1</span>
                 </div>
             </div>
@@ -49,32 +49,32 @@ require_once("websiteHeader.html");
         <div class="main-body">
             <div class="left">
                 <div class="profile-side">
-                    <p class="nama"><i class="fa-solid fa-square-user"></i>
-                        <?= $readProfile['nama'] ?>
-                    </p>
-                    <p class="email"><i class="fa-solid fa-at"></i>
-                        <?= $readProfile['email'] ?>
-                    </p>
-                    <p class="bio">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    <table cellspacing = 0 border="0" class="profile-info">
+                        <tr>
+                            <th><p>Nama</p></th>
+                            <td><p><?= $readProfile['nama'] ?></p></td>
+                        </tr>
+                        <tr>
+                            <th><p>Email</p></th>
+                            <td><p><?= $readProfile['email'] ?></p></td>
+                        </tr>
+                        <tr>
+                        <th style="vertical-align: top;"><p>Bio</p></th>
+                        <td><p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Ut laudantium reprehenderit quos tempora eos perferendis porro praesentium eaque sequi,
-                        doloribus sit quibusdam, a consequuntur!</p>
-                    <div class="profile-button">
-                        <button class="chat-button"><i class="fa-solid fa-comment"></i>
-                            Chat
-                        </button>
-                        <button class="create-button"><i class="fa-solid fa-plus"></i>
-                            Create
-                        </button>
-                    </div>
+                        doloribus sit quibusdam, a consequuntur!
+                        </p></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
 
             <div class="right">
                 <div class="nav">
                     <ul>
-                        <li onclick="tabs(0)" class="user-post"></li>
-                        <li onclick="tabs(1)" class="user-review"></li>
-                        <li onclick="tabs(2)" class="user-setting"></li>
+                        <li onclick="tabs(0)" class="user-post">Posts</li>
+                        <li onclick="tabs(1)" class="user-review">Reviews</li>
+                        <li onclick="tabs(2)" class="user-setting">Settings</li>
                     </ul>
                 </div>
                 <div class="profile-body">
@@ -103,11 +103,10 @@ require_once("websiteHeader.html");
 
         </div>
 
-
     </div>
 
-    <script src="./jquery/jquery.js"></script>
-    <script src="./main.js"></script>
+    <script src="./jquery/profile_jquery.js"></script>
+    <script src="./profilePage.js"></script>
 
     <?php
     echo "id = " . $readProfile['id'] . "<br>";
