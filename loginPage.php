@@ -54,9 +54,10 @@ require_once("websiteHeader.html");
                 if (!empty($data)) {
                     session_start();
                     $_SESSION['user_id'] = $data['user_id'];
-                    echo "[session] user_id = " . $_SESSION['user_id'];
+                    // echo "[session] user_id = " . $_SESSION['user_id'];
+                    header("location: profilePage.php");
                 } else {
-                    echo "user_id not found";
+                    // echo "user_id not found";
                 }
             }
             ?>
