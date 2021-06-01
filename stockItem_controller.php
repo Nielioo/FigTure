@@ -13,7 +13,7 @@ function createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gamba
             strtolower($mime);
             $mime_type = explode("/", $mime, 2);
 
-            if (validateType($mime_type)) {
+            if (validateMimeType($mime_type)) {
                 // Add image file to image_file
                 $target_dir = "stock_item/";
                 $path = pathinfo($_FILES['gambar']['name']);
@@ -362,7 +362,7 @@ function deleteStockItemByImageId($user_id, $image_id)
     close($connection);
 }
 
-function validateType($mime_type)
+function validateMimeType($mime_type)
 {
     $allowed_type = array("image");
     $allowed_ext = array("jpg", "jpeg", "png");
