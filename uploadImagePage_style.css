@@ -121,6 +121,22 @@ input[type="checkbox"]:checked ~ div {
   border-color: #9fedd7;
 }
 
+.price-form-field {
+  display: flex;
+  align-items: center;
+  color: #999;
+}
+
+.price-form-field input {
+  height: 40px;
+  width: 100%;
+  padding: 0 16px;
+  border-radius: 4px;
+  transition: 0.2s;
+  border: none;
+  outline: none;
+}
+
 .form-button {
   width: 100%;
   padding: 12px 10px;

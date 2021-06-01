@@ -18,7 +18,6 @@
     session_start();
     if (empty($_SESSION['user_id'])) {
         require_once("websiteHeader.html");
-        header("location: loginPage.php");
     } else {
         require_once("websiteHeader_after.html");
     }
@@ -39,7 +38,7 @@
 
             if (($_FILES['gambar']['name'] != "")) {
                 $item_id = createStockItem($user_id, $judul, $deskripsi, $harga, $kategori, $gambar_name, $gambar_tmp_name, $mime);
-                header("location: collection.php");
+                header("location: profilePage.php");
             }
         } else {
             echo "No category has been selected";
@@ -87,7 +86,13 @@
                 }
                 ?>
             </div>
-            <input type="text" class="form-field animation a8" name="harga" placeholder="Price" required>
+
+            <!-- <div class="price-form-field form-field animation a8">
+                <span class="animation a8">$</span>
+                <input type="text" class="borderless-form-field animation a8" name="harga" placeholder="Price" required>
+            </div> -->
+
+            <input type="text" class="form-field animation a8" name="harga" placeholder="$ Price" required>
 
             <input type="submit" class="form-button animation a9" name="upload" value="UPLOAD">
         </form>
