@@ -110,14 +110,24 @@ require_once("websiteHeader_after.html");
                             <h1>User Settings</h1>
                             <table cellspacing=0 border="0" class="table-setting">
                                 <tr>
-                                    <td><p>Edit Account Information</p></td>
+                                    <td>
+                                        <p>Edit Account Information</p>
+                                    </td>
                                     <td><button class="next_button"><a href="editProfilePage.php">></a></button></td>
                                 </tr>
                                 <tr>
-                                    <td><p>Delete Account</p></td>
+                                    <td>
+                                        <p>Delete Account</p>
+                                    </td>
                                     <td><button class="next_button"><a href="deleteProfilePage.php">></a></button></td>
                                 </tr>
                             </table>
+                            <div class="warn">
+                                <p><b>Warning: Account deletion is permanent and cannot be undone.<br>
+                                    Once your account is deleted, you can no longer to access this site
+                                    by the same account.</b></p>
+                            </div>
+                            
                         </div>
 
                     </div>

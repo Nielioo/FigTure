@@ -41,9 +41,9 @@ require_once("websiteHeader.html");
 
                 <div class="radioButton animation a8">
                     <p>Choose your role:&nbsp;&nbsp;</p>
-                    <input type="radio" id="buyer" name="tipe_user" value="buyer">
+                    <input type="radio" id="buyer" name="tipe_user" value="visitor">
                     <p>Visitor&nbsp;&nbsp;</p>
-                    <input type="radio" id="seller" name="tipe_user" value="seller">
+                    <input type="radio" id="seller" name="tipe_user" value="creator">
                     <p>Creator</p>
                 </div>
 

@@ -1,0 +1,226 @@
+/* 
+color palette:
+#026670 - dark green
+#9fedd7 - light green
+#fef9c7 - light yellow
+#fce181 - yelow
+#edeae5 - light grey
+*/
+
+@import url("https://rsms.me/inter/inter.css");
+html {
+  font-family: "Inter", sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background-color: white;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  padding-top: 20px;
+}
+
+.right {
+  flex: 1;
+  background-color: white;
+  transition: 0.01s;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  animation-name: right;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-delay: 1s;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.right h3{
+    margin-top: 15%;
+}
+.image-preview {
+  margin-top: 20px;
+  border-radius: 50%;
+  height: 220px;
+  width: 220px;
+  border: 4px solid #fef9c7;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  z-index: 5;
+}
+.image-preview:hover {
+  transform: scale(1.1);
+}
+
+.left {
+  flex: 2;
+  height: 100%;
+  padding-left: 40px;
+  display: flex;
+  overflow: hidden;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header > h2 {
+  margin: 30px 0px 0px 0px;
+  color: #026670;
+}
+
+.header > h4 {
+  margin-top: 10px;
+  font-weight: normal;
+  font-size: 15px;
+  color: #4d4d4d;
+}
+
+.form {
+  margin-top: 10px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form > p {
+  font-size: 12px;
+}
+
+.form > p > a {
+  color: #000;
+  font-size: 12px;
+}
+
+.setProfilePicture {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.radioButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.back {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.form-field {
+  height: 46px;
+  width: 100%;
+  padding: 0 16px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  outline: 0;
+  transition: 0.2s;
+  margin-top: 20px;
+}
+
+.form-field:focus {
+  border-color: #9fedd7;
+}
+
+.form-button {
+  width: 100%;
+  padding: 12px 10px;
+  border: 0;
+  background: linear-gradient(to right, #9fedd7 0%, #003f30 100%);
+  border-radius: 3px;
+  margin-top: 20px;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.animation {
+  animation-name: move;
+  animation-duration: 0.4s;
+  animation-fill-mode: both;
+  animation-delay: 1s;
+}
+
+.a1 {
+  animation-delay: 1s;
+}
+
+.a2 {
+  animation-delay: 1.1s;
+}
+
+.a3 {
+  animation-delay: 1.2s;
+}
+
+.a4 {
+  animation-delay: 1.3s;
+}
+
+.a5 {
+  animation-delay: 1.4s;
+}
+
+.a6 {
+  animation-delay: 1.5s;
+}
+
+.a7 {
+  animation-delay: 1.6s;
+}
+
+.a8 {
+  animation-delay: 1.7s;
+}
+
+.a9 {
+  animation-delay: 1.8s;
+}
+
+.a10 {
+  animation-delay: 1.9s;
+}
+
+@keyframes move {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-40px);
+  }
+
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+@keyframes right {
+  0% {
+    opacity: 0;
+    width: 0;
+  }
+
+  100% {
+    opacity: 1;
+    padding: 20px 40px;
+    width: 440px;
+  }
+}

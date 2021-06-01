@@ -227,3 +227,11 @@ body {
   text-decoration: none;
   font-size: 16pt;
 }
+
+.warn{
+  width: 90%;
+  padding: 5px;
+  font-size: 12px;
+  color: red;
+  margin-top: 50px;
+}
