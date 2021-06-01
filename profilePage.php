@@ -15,8 +15,8 @@ require_once("websiteHeader.html");
     <title>Profile Page</title>
     <link rel="stylesheet" href="navigation_bar_style.css">
     <link rel="stylesheet" href="profilePage_style.css">
-    <script src="./profile_jquery.js"></script>
-    <script src="./profilePage.js"></script>
+    <script src="./profile_jquery.js" defer></script>
+    <script src="profilePage.js" defer></script>
 </head>
 
 <body>
