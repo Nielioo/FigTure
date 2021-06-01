@@ -1,10 +1,3 @@
-<?php
-
-require_once("profile_controller.php");
-require_once("websiteHeader_after.html");
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,6 +11,12 @@ require_once("websiteHeader_after.html");
 </head>
 
 <body>
+    <?php
+
+    require_once("profile_controller.php");
+    require_once("websiteHeader_after.html");
+
+    ?>
 
     <?php
     session_start();
@@ -90,7 +89,7 @@ require_once("websiteHeader_after.html");
 
         <div class="right">
             <h3>Previous Profile Picture</h3>
-            <img class="image-preview" src="<?= $readProfile['profile_picture']?>">
+            <img class="image-preview" src="<?= $readProfile['profile_picture'] ?>">
         </div>
 
     </div>

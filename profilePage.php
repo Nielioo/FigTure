@@ -1,10 +1,3 @@
-<?php
-
-require_once("profile_controller.php");
-require_once("websiteHeader_after.html");
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +12,12 @@ require_once("websiteHeader_after.html");
 </head>
 
 <body>
+    <?php
+
+    require_once("profile_controller.php");
+    require_once("websiteHeader_after.html");
+
+    ?>
 
     <?php
     session_start();
@@ -124,10 +123,10 @@ require_once("websiteHeader_after.html");
                             </table>
                             <div class="warn">
                                 <p><b>Warning: Account deletion is permanent and cannot be undone.<br>
-                                    Once your account is deleted, you can no longer to access this site
-                                    by the same account.</b></p>
+                                        Once your account is deleted, you can no longer to access this site
+                                        by the same account.</b></p>
                             </div>
-                            
+
                         </div>
 
                     </div>

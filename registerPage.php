@@ -1,10 +1,3 @@
-<?php
-
-require_once("profile_controller.php");
-require_once("websiteHeader.html");
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,6 +11,12 @@ require_once("websiteHeader.html");
 </head>
 
 <body>
+    <?php
+
+    require_once("profile_controller.php");
+    require_once("websiteHeader.html");
+
+    ?>
 
     <div class="container">
         <div class="left"></div>
@@ -51,7 +50,7 @@ require_once("websiteHeader.html");
 
                 <p class="reglog animation a10">Already have an account? <a href="loginPage.php">Login Here</a></p>
             </form>
-            
+
             <?php
             if (isset($_POST['create'])) {
                 $user_id = $_POST['user_id'];
