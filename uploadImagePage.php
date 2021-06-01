@@ -63,9 +63,9 @@
                 <?php
                 $list_count = 0;
                 foreach ($category_available_list as $category) {
-                    if ($list_count % 5 === 0 && $list_count !== 0) {
-                        echo "<br />";
-                    }
+                    // if ($list_count % 5 === 0 && $list_count !== 0) {
+                    //     echo "<br />";
+                    // }
                 ?>
                     <div class="checkbox">
                         <div>
