@@ -1,5 +1,23 @@
+@import url("https://rsms.me/inter/inter.css");
+html {
+  font-family: "Inter", sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}
+
 * {
-    margin: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  break-inside: avoid;
+}
+
+/* FIXME something is wrong with the height of each "a" link */
+img {
+  will-change: transform;
 }
 
 .collection {
@@ -13,6 +31,7 @@
 }
 
 .collection_link {
+  /* height: 100%; */
   margin: 2px;
   overflow: hidden;
 }
