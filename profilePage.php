@@ -15,6 +15,8 @@ require_once("websiteHeader.html");
     <title>Profile Page</title>
     <link rel="stylesheet" href="navigation_bar_style.css">
     <link rel="stylesheet" href="profilePage_style.css">
+    <script src="./profile_jquery.js"></script>
+    <script src="./profilePage.js"></script>
 </head>
 
 <body>
@@ -49,21 +51,33 @@ require_once("websiteHeader.html");
         <div class="main-body">
             <div class="left">
                 <div class="profile-side">
-                    <table cellspacing = 0 border="0" class="profile-info">
+                    <table cellspacing=0 border="0" class="profile-info">
                         <tr>
-                            <th><p>Nama</p></th>
-                            <td><p><?= $readProfile['nama'] ?></p></td>
+                            <th>
+                                <p>Nama</p>
+                            </th>
+                            <td>
+                                <p><?= $readProfile['nama'] ?></p>
+                            </td>
                         </tr>
                         <tr>
-                            <th><p>Email</p></th>
-                            <td><p><?= $readProfile['email'] ?></p></td>
+                            <th>
+                                <p>Email</p>
+                            </th>
+                            <td>
+                                <p><?= $readProfile['email'] ?></p>
+                            </td>
                         </tr>
                         <tr>
-                        <th style="vertical-align: top;"><p>Bio</p></th>
-                        <td><p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Ut laudantium reprehenderit quos tempora eos perferendis porro praesentium eaque sequi,
-                        doloribus sit quibusdam, a consequuntur!
-                        </p></td>
+                            <th style="vertical-align: top;">
+                                <p>Bio</p>
+                            </th>
+                            <td>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Ut laudantium reprehenderit quos tempora eos perferendis porro praesentium eaque sequi,
+                                    doloribus sit quibusdam, a consequuntur!
+                                </p>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -72,27 +86,27 @@ require_once("websiteHeader.html");
             <div class="right">
                 <div class="nav">
                     <ul>
-                        <li onclick="tabs(0)" class="user-post">Posts</li>
-                        <li onclick="tabs(1)" class="user-review">Reviews</li>
-                        <li onclick="tabs(2)" class="user-setting">Settings</li>
+                        <li data-tab-target="#post" class="active">Posts</li>
+                        <li data-tab-target="#review">Reviews</li>
+                        <li data-tab-target="#setting">Settings</li>
                     </ul>
                 </div>
-                <div class="profile-body">
-                    <div class="profile-post">
+                <div class="tab-content">
+                    <div id="post" data-tab-content class="active">
                         <h1>kolom buat Bryan</h1>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Eaque impedit ullam praesentium, ex ut consequatur expedita consectetur.
                             Tempora, officiis! Repellat?</p>
                     </div>
 
-                    <div class="profile-review">
+                    <div id="review" data-tab-content>
                         <h1>kolom buat Gavin</h1>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Eaque impedit ullam praesentium, ex ut consequatur expedita consectetur.
                             Tempora, officiis! Repellat?</p>
                     </div>
 
-                    <div class="profile-setting">
+                    <div id="setting" data-tab-content>
                         <h1>kolom ku buat setting user</h1>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Eaque impedit ullam praesentium, ex ut consequatur expedita consectetur.
@@ -104,20 +118,6 @@ require_once("websiteHeader.html");
         </div>
 
     </div>
-
-    <script src="./jquery/profile_jquery.js"></script>
-    <script src="./profilePage.js"></script>
-
-    <?php
-    echo "id = " . $readProfile['id'] . "<br>";
-    echo "user_id = " . $readProfile['user_id'] . "<br>";
-    echo "profile picture = " . "<img src=" . $readProfile['profile_picture'] . ">" . "<br>";
-    echo "nama = " . $readProfile['nama'] . "<br>";
-    echo "email = " . $readProfile['email'] . "<br>";
-    echo "password = " . $readProfile['password'] . "<br>";
-    echo "tipe user = " . $readProfile['tipe_user'] . "<br>";
-    ?>
-
 
 </body>
 
