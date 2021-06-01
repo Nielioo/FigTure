@@ -106,10 +106,20 @@ require_once("websiteHeader_after.html");
                     </div>
 
                     <div id="setting" data-tab-content>
-                        <h1>kolom ku buat setting user</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Eaque impedit ullam praesentium, ex ut consequatur expedita consectetur.
-                            Tempora, officiis! Repellat?</p>
+                        <div class="setting">
+                            <h1>User Settings</h1>
+                            <table cellspacing=0 border="0" class="table-setting">
+                                <tr>
+                                    <td><p>Edit Account Information</p></td>
+                                    <td><button class="next_button"><a href="editProfilePage.php">></a></button></td>
+                                </tr>
+                                <tr>
+                                    <td><p>Delete Account</p></td>
+                                    <td><button class="next_button"><a href="deleteProfilePage.php">></a></button></td>
+                                </tr>
+                            </table>
+                        </div>
+
                     </div>
                 </div>
             </div>
