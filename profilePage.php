@@ -15,6 +15,7 @@
     <?php
 
     require_once("profile_controller.php");
+    require_once("stockItem_controller.php");
     require_once("websiteHeader_after.html");
 
     ?>
@@ -89,12 +90,52 @@
                         <li data-tab-target="#setting">Settings</li>
                     </ul>
                 </div>
+                <div class="clearFloat"></div>
                 <div class="tab-content">
                     <div id="post" data-tab-content class="active">
-                        <h1>kolom buat Bryan</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Eaque impedit ullam praesentium, ex ut consequatur expedita consectetur.
-                            Tempora, officiis! Repellat?</p>
+                        <div class="item_list">
+                            <?php
+                            $image_list = readStockItemByUserId($user_id);
+                            foreach ($image_list as $image) {
+                                $category_list = implode(", ", $image['category']);
+                            ?>
+                                <div class="item_data">
+                                    <div class="item_image"><img src="<?= $image['gambar'] ?>"></div>
+                                    <div class="item_detail">
+                                        <h3 class="item_title"><?= $image['judul'] ?>
+                                            <hr />
+                                        </h3>
+                                        <div class="item_type">
+                                            <h4 class="type_text">Image format</h4>
+                                            <label><?= $image['type'] ?></label>
+                                            <hr />
+                                        </div>
+                                        <div class="item_category">
+                                            <h4 class="category_text">Categories</h4>
+                                            <label><?= $category_list ?></label>
+                                        </div>
+                                    </div>
+                                    <div class="item_price">
+                                        <h4 class="price_text">Price</h4>
+                                        <label><?= $image['harga'] ?>
+                                        </label>
+                                    </div>
+                                    <div class="item_option">
+                                        <a href="collectionDetail.php?image_id=<?= $image['image_id'] ?>" class="item_view">
+                                            <div class="view_text">View</div>
+                                        </a>
+                                        <a href="#" class="item_edit">
+                                            <div class="edit_text">Edit</div>
+                                        </a>
+                                        <a href="#" class="item_delete">
+                                            <div class="delete_text">Delete</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            <?php
+                            }
+                            ?>
+                        </div>
                     </div>
 
                     <div id="review" data-tab-content>
