@@ -18,6 +18,7 @@
     session_start();
     if (empty($_SESSION['user_id'])) {
         require_once("websiteHeader.html");
+        header("location: loginPage.php");
     } else {
         require_once("websiteHeader_after.html");
     }

@@ -22,6 +22,10 @@
     session_start();
     $user_id = $_SESSION['user_id'];
 
+    if (empty($user_id)) {
+        header("location: loginPage.php");
+    }
+
     $readProfile = readProfile($user_id);
     ?>
 

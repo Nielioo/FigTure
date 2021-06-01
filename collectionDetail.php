@@ -29,6 +29,11 @@
                 <div class="left_container">
                     <?php
                     $image_id = $_GET['image_id'];
+
+                    if (empty($image_id)) {
+                        header("location: collection.php");
+                    }
+
                     $image_data = readStockItemByImageId($image_id);
                     $image = $image_data[0]; // TODO Risky index 0, need to be tested more
                     $category_list = implode(", ", $image['category']);
