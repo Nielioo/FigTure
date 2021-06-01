@@ -50,7 +50,7 @@ nav a:hover {
   background-color: #9fedd7;
   color: black;
   border-radius: 10px;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .btnHighlight:hover {
