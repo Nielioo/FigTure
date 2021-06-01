@@ -176,10 +176,11 @@ body {
   width: 100%;
   z-index: -1;
 }
+
 [data-tab-content] {
   display: none;
 }
-.active [data-tab-content] {
+.active[data-tab-content] {
   display: block;
   padding: 20px;
   width: 100%;
