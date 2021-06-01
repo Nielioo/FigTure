@@ -72,7 +72,7 @@ body {
   align-items: center;
 }
 
-/* .checkbox {
+.checkbox {
   position: relative;
   width: 140px;
   height: 100px;
@@ -92,7 +92,7 @@ body {
   transition: 0.5s ease;
 }
 
-input {
+input[type="checkbox"] {
   position: absolute;
   top: 0;
   left: 0;
@@ -100,11 +100,11 @@ input {
   height: 100px;
   opacity: 0;
   cursor: pointer;
-} */
+}
 
-/* input[type="checkbox"]:checked ~ div {
+input[type="checkbox"]:checked ~ div {
   background-color: #50bcf2;
-} */
+}
 
 .radioButton {
   display: flex;

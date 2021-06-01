@@ -55,6 +55,8 @@
                 <input type="file" name="gambar" placeholder="Image" accept="image/jpg, image/jpeg, image/png" required>
             </div>
 
+            <br />
+
             <label class="animation a6">Kategori : </label><br />
             <div class="category animation a7">
 
@@ -65,9 +67,13 @@
                         echo "<br />";
                     }
                 ?>
-                    <div>
-                        <input type="checkbox" id="<?= $category ?>" name="kategori[]" value="<?= $category ?>">
-                        <label for="<?= $category ?>"><?= $category ?></label>
+                    <div class="checkbox">
+                        <div>
+                            <input type="checkbox" id="<?= $category ?>" name="kategori[]" value="<?= $category ?>">
+                            <div>
+                                <label for="<?= $category ?>"><?= $category ?></label>
+                            </div>
+                        </div>
                     </div>
                 <?php
                     $list_count++;
