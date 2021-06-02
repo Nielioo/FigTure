@@ -45,8 +45,12 @@
             </div>
             <div class="profile-option">
                 <div class="notification">
+                    <div class="upload-image">
+                        <label>Upload image</label>
+                        <img src="asset/plus.png" class="icon-plus">
+                    </div>
                     <!-- <i class="fa-solid fa-bell"></i> -->
-                    <span class="alert-message">1</span>
+                    <!-- <span class="alert-message">1</span> -->
                 </div>
             </div>
 
