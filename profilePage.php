@@ -43,12 +43,18 @@
                     <p class="tipe-user"><?= $readProfile['tipe_user'] ?></p>
                 </div>
             </div>
-            <div class="profile-option">
-                <div class="notification">
+            <a href="uploadImagePage.php" class="upload-image-link">
+                <div class="profile-option">
+                    <!-- <div class="notification"> -->
+                    <div class="upload-image">
+                        Upload image&nbsp;
+                        <img src="asset/plus.png" class="icon-plus">
+                    </div>
                     <!-- <i class="fa-solid fa-bell"></i> -->
-                    <span class="alert-message">1</span>
+                    <!-- <span class="alert-message">1</span> -->
+                    <!-- </div> -->
                 </div>
-            </div>
+            </a>
 
         </div>
         <div class="main-body">
@@ -128,10 +134,10 @@
                                         <a href="collectionDetail.php?image_id=<?= $image['image_id'] ?>" class="item_view">
                                             <div class="view_text">View</div>
                                         </a>
-                                        <a href="#" class="item_edit">
+                                        <a href="editImagePage.php?image_id=<?= $image['image_id'] ?>" class="item_edit">
                                             <div class="edit_text">Edit</div>
                                         </a>
-                                        <a href="#" class="item_delete">
+                                        <a href="deleteImagePage.php?image_id=<?= $image['image_id'] ?>" class="item_delete">
                                             <div class="delete_text">Delete</div>
                                         </a>
                                     </div>
