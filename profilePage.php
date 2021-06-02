@@ -94,7 +94,7 @@
                 </div>
                 <div class="clearFloat"></div>
                 <div class="tab-content">
-                    <div id="post" data-tab-content  class="active">
+                    <div id="post" data-tab-content class="active">
                         <div class="item_list">
                             <?php
                             $image_list = readStockItemByUserId($user_id);
@@ -103,25 +103,27 @@
                             ?>
                                 <div class="item_data">
                                     <div class="item_image"><img src="<?= $image['gambar'] ?>"></div>
+
                                     <div class="item_detail">
-                                        <h3 class="item_title"><?= $image['judul'] ?>
+                                        <h4 class="item_title"><?= $image['judul'] ?>
                                             <hr />
-                                        </h3>
+                                        </h4>
+                                        <div class="item_price">
+                                            <h5 class="price_text">Price</h5>
+                                            <label>$<?= $image['harga'] ?></label>
+                                            <hr />
+                                        </div>
                                         <div class="item_type">
-                                            <h4 class="type_text">Image format</h4>
+                                            <h5 class="type_text">Image format</h5>
                                             <label><?= $image['type'] ?></label>
                                             <hr />
                                         </div>
                                         <div class="item_category">
-                                            <h4 class="category_text">Categories</h4>
+                                            <h5 class="category_text">Categories</h5>
                                             <label><?= $category_list ?></label>
                                         </div>
                                     </div>
-                                    <div class="item_price">
-                                        <h4 class="price_text">Price</h4>
-                                        <label><?= $image['harga'] ?>
-                                        </label>
-                                    </div>
+
                                     <div class="item_option">
                                         <a href="collectionDetail.php?image_id=<?= $image['image_id'] ?>" class="item_view">
                                             <div class="view_text">View</div>

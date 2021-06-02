@@ -248,14 +248,14 @@ body {
 }
 
 /* Posts style */
-
 .item_list {
 }
 
 .item_data {
   display: grid;
-  grid-template-columns: 2fr 3fr 1fr 1fr;
-  grid-auto-rows: 200px;
+  grid-template-columns: 2fr 3fr 0.5fr;
+  grid-auto-rows: 250px;
+  grid-template-areas: "image detail option";
   gap: 2px;
   text-align: left;
   border: 2px solid rgb(15, 15, 15);
@@ -267,8 +267,8 @@ body {
 }
 
 .item_image {
+  grid-area: image;
   display: flex;
-  height: 200px;
   overflow: hidden;
   justify-content: center;
   align-items: center;
@@ -287,17 +287,35 @@ body {
 }
 
 .item_detail {
+  grid-area: detail;
   display: grid;
-  grid-template-rows: 1fr 1fr 2fr;
+  grid-template-rows: 1fr 1fr 1fr min-content;
+  grid-template-areas:
+    "title"
+    "price"
+    "type"
+    "category";
   background-color: #edeae5;
 }
 
 .item_title {
+  grid-area: title;
   margin: auto 10px;
   padding-top: 10px;
 }
 
+.item_price {
+  grid-area: price;
+  margin: 0 10px;
+}
+
+.item_price .price_text {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
 .item_type {
+  grid-area: type;
   margin: 0 10px;
 }
 
@@ -307,29 +325,18 @@ body {
 }
 
 .item_category {
+  grid-area: category;
   margin: 0 10px;
   padding-bottom: 20px;
 }
 
 .item_category .category_text {
   margin-top: 0;
-}
-
-.item_price {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  background-color: #edeae5;
-}
-
-.item_price .price_text {
-  margin: 0 10px;
-  /* padding-top: 10px; */
+  margin-bottom: 5px;
 }
 
 .item_option {
+  grid-area: option;
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   gap: 2px;
@@ -353,7 +360,7 @@ body {
 }
 
 .item_view .view_text {
-  margin-top: 22px;
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -375,7 +382,7 @@ body {
 }
 
 .item_edit .edit_text {
-  margin-top: 22px;
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -397,7 +404,7 @@ body {
 }
 
 .item_delete .delete_text {
-  margin-top: 22px;
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -408,6 +415,7 @@ body {
   transition: 0.5s;
   color: white;
 }
+/* End of posts style */
 
 @media screen and (max-width: 600px) {
   .profile-header {
@@ -427,27 +435,27 @@ body {
     transform: translateY(-80%);
   }
 
-  .profile-option{
+  .profile-option {
     display: none;
   }
 
-  .main-body{
+  .main-body {
     flex-direction: column;
     padding: 0;
   }
-  .profile-side{
+  .profile-side {
     width: 100%;
     margin-left: 0;
     padding: 40px 20px 10px 60px;
   }
 
-  .right{
+  .right {
     margin-top: 5px;
   }
-  .nav ul{
+  .nav ul {
     height: 35px;
   }
-  .nav ul li{
+  .nav ul li {
     font-size: 14px;
     padding-top: 2%;
   }
@@ -460,7 +468,7 @@ body {
     width: 100%;
     padding: 0px;
   }
-  .setting-header{
+  .setting-header {
     display: none;
   }
   .table-setting {
@@ -469,7 +477,7 @@ body {
   .table-setting td p {
     font-size: 14px;
   }
-  
+
   .next_button {
     padding: 4px 12px 4px 12px;
     height: 40%;
@@ -477,7 +485,7 @@ body {
   .next_button a {
     font-size: 16px;
   }
-  
+
   .warn {
     width: 100%;
     text-align: center;
@@ -486,5 +494,71 @@ body {
     margin-top: 75px;
   }
 
+  /* Posts style */
+  .item_data {
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 100px 30px;
+    grid-template-areas:
+      "image detail"
+      "option option";
+  }
 
+  .item_detail {
+    grid-area: detail;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "title"
+      "price";
+    background-color: #edeae5;
+  }
+
+  .item_title {
+    grid-area: title;
+    margin: auto 10px;
+    padding-top: 10px;
+  }
+
+  .item_price {
+    grid-area: price;
+    margin: 0 10px;
+  }
+
+  .item_price hr {
+    display: none;
+  }
+
+  .item_price .price_text {
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+
+  .item_type {
+    display: none;
+  }
+
+  .item_category {
+    display: none;
+  }
+
+  .item_option {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    gap: 2px;
+    /* overflow: hidden; */
+    background-color: black;
+  }
+
+  .item_view .view_text {
+    margin-top: 4px;
+  }
+
+  .item_edit .edit_text {
+    margin-top: 4px;
+  }
+
+  .item_delete .delete_text {
+    margin-top: 4px;
+  }
+  /* End of posts style */
 }
