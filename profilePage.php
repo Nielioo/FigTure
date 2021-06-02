@@ -43,16 +43,18 @@
                     <p class="tipe-user"><?= $readProfile['tipe_user'] ?></p>
                 </div>
             </div>
-            <div class="profile-option">
-                <div class="notification">
+            <a href="uploadImagePage.php" class="upload-image-link">
+                <div class="profile-option">
+                    <!-- <div class="notification"> -->
                     <div class="upload-image">
-                        <label>Upload image</label>
+                        Upload image&nbsp;
                         <img src="asset/plus.png" class="icon-plus">
                     </div>
                     <!-- <i class="fa-solid fa-bell"></i> -->
                     <!-- <span class="alert-message">1</span> -->
+                    <!-- </div> -->
                 </div>
-            </div>
+            </a>
 
         </div>
         <div class="main-body">

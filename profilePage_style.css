@@ -85,7 +85,7 @@ body {
   /* border-radius: 50%; */
   border-radius: 5px;
   align-items: center;
-  cursor: pointer;
+  /* cursor: pointer; */
   transition: all 0.5s ease-in-out;
   outline: none;
 }
@@ -115,12 +115,15 @@ body {
   font-size: 0.8rem;
   font-weight: bold;
 }
+.profile-option .upload-image-link {
+  display: block;
+}
 .profile-option .upload-image {
   padding: 10px;
-  text-align: center;
+  color: black;
 }
 .profile-option .upload-image .icon-plus {
-  width: 10px;
+  width: 12px;
 }
 
 .main-body {
