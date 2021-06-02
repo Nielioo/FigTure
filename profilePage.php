@@ -134,10 +134,10 @@
                                         <a href="collectionDetail.php?image_id=<?= $image['image_id'] ?>" class="item_view">
                                             <div class="view_text">View</div>
                                         </a>
-                                        <a href="#" class="item_edit">
+                                        <a href="editImagePage.php?image_id=<?= $image['image_id'] ?>" class="item_edit">
                                             <div class="edit_text">Edit</div>
                                         </a>
-                                        <a href="#" class="item_delete">
+                                        <a href="deleteImagePage.php?image_id=<?= $image['image_id'] ?>" class="item_delete">
                                             <div class="delete_text">Delete</div>
                                         </a>
                                     </div>
