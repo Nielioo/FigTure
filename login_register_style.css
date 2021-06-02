@@ -21,6 +21,9 @@ html {
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
 }
+html {
+  height: 100%;
+}
 
 body {
   background-color: white;
