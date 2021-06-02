@@ -59,7 +59,7 @@ body {
   float: left;
   flex-direction: column;
   justify-content: center;
-  transform: translateX(180%);
+  padding-left: 10%;
 }
 .profile-nav .username {
   font-variant: small-caps;
@@ -71,7 +71,6 @@ body {
   display: flex;
   font-weight: bold;
   color: #777;
-  margin-right: 5px;
   transform: translateY(-70%);
 }
 
@@ -141,6 +140,12 @@ body {
   padding: 8px;
 }
 
+#see-more-bio {
+  color: blue;
+  cursor: pointer;
+  text-transform: lowercase;
+}
+
 .right {
   width: 100%;
 }
@@ -186,6 +191,8 @@ body {
   width: 100%;
   text-align: center;
 }
+
+/* Settings Style */
 
 .setting {
   display: block;
@@ -400,4 +407,84 @@ body {
   transform: scale(1.1);
   transition: 0.5s;
   color: white;
+}
+
+@media screen and (max-width: 600px) {
+  .profile-header {
+    height: 140px;
+  }
+
+  .profile-img img {
+    width: 150px;
+    height: 150px;
+    top: 30px;
+  }
+
+  .profile-nav {
+    padding-left: 4%;
+  }
+  .profile-nav .other-info {
+    transform: translateY(-80%);
+  }
+
+  .profile-option{
+    display: none;
+  }
+
+  .main-body{
+    flex-direction: column;
+    padding: 0;
+  }
+  .profile-side{
+    width: 100%;
+    margin-left: 0;
+    padding: 40px 20px 10px 60px;
+  }
+
+  .right{
+    margin-top: 5px;
+  }
+  .nav ul{
+    height: 35px;
+  }
+  .nav ul li{
+    font-size: 14px;
+    padding-top: 2%;
+  }
+
+  /* Settings style */
+
+  .setting {
+    display: block;
+    text-align: left;
+    width: 100%;
+    padding: 0px;
+  }
+  .setting-header{
+    display: none;
+  }
+  .table-setting {
+    width: 100%;
+  }
+  .table-setting td p {
+    font-size: 14px;
+  }
+  
+  .next_button {
+    padding: 4px 12px 4px 12px;
+    height: 40%;
+  }
+  .next_button a {
+    font-size: 16px;
+  }
+  
+  .warn {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    font-size: 10px;
+    margin-top: 75px;
+  }
+
+
 }

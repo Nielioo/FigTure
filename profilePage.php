@@ -76,9 +76,7 @@
                                 <p>Bio</p>
                             </th>
                             <td>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Ut laudantium reprehenderit quos tempora eos perferendis porro praesentium eaque sequi,
-                                    doloribus sit quibusdam, a consequuntur!
+                                <p class="bio">The purpose of our live is to be <b>HAPPY</b>!
                                 </p>
                             </td>
                         </tr>
@@ -96,7 +94,7 @@
                 </div>
                 <div class="clearFloat"></div>
                 <div class="tab-content">
-                    <div id="post" data-tab-content class="active">
+                    <div id="post" data-tab-content  class="active">
                         <div class="item_list">
                             <?php
                             $image_list = readStockItemByUserId($user_id);
@@ -143,15 +141,12 @@
                     </div>
 
                     <div id="review" data-tab-content>
-                        <h1>kolom buat Gavin</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Eaque impedit ullam praesentium, ex ut consequatur expedita consectetur.
-                            Tempora, officiis! Repellat?</p>
+                        <h4>There is No Reviews for Now</h4>
                     </div>
 
                     <div id="setting" data-tab-content>
                         <div class="setting">
-                            <h1>User Settings</h1>
+                            <h1 class="setting-header">User Settings</h1>
                             <table cellspacing=0 border="0" class="table-setting">
                                 <tr>
                                     <td>
