@@ -52,8 +52,8 @@ body {
   flex-wrap: wrap;
   align-items: center;
 }
-.right h3{
-    margin-top: 15%;
+.right h3 {
+  margin-top: 15%;
 }
 .image-preview {
   margin-top: 20px;
@@ -222,5 +222,15 @@ body {
     opacity: 1;
     padding: 20px 40px;
     width: 440px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .left {
+    padding-right: 40px;
+  }
+
+  .right {
+    display: none;
   }
 }

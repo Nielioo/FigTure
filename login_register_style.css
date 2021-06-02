@@ -215,6 +215,10 @@ body {
 }
 
 @media screen and (max-width: 600px) {
+  .left {
+    display: none;
+  }
+
   .container {
     flex-direction: column;
   }
