@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload an image</title>
+    <title>Edit image</title>
     <link rel="stylesheet" href="navigation_bar_style.css">
     <link rel="stylesheet" href="editImagePage_style.css">
     <script src="http://code.jquery.com/jquery.js"></script>
