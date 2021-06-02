@@ -26,7 +26,6 @@
 
     if (isset($_POST['upload'])) {
         if (isset($_POST['kategori'])) {
-            session_start();
             $user_id = $_SESSION['user_id'];
             $judul = $_POST['judul'];
             $deskripsi = $_POST['deskripsi'];
