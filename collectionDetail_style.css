@@ -39,6 +39,7 @@ h4 {
   padding: 20px 0;
   /* margin: 0 auto; */
   justify-content: space-between;
+  flex-direction: row;
 }
 
 .left_container {
@@ -113,14 +114,21 @@ h4 {
   padding: 20px;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 600px) {
   .collection_figure {
-    max-height: 500px;
+    max-height: 200px;
   }
-}
 
-@media screen and (max-width: 850px) {
-  .collection_figure {
-    max-height: 300px;
+  .flex_container {
+    flex-direction: column;
+  }
+
+  .left_container {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .right_container {
+    width: 100%;
   }
 }
