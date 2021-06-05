@@ -1,0 +1,88 @@
+@import url("https://rsms.me/inter/inter.css");
+html {
+  font-family: "Inter", sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  break-inside: avoid;
+}
+
+/* FIXME something is wrong with the height of each "a" link */
+img {
+  will-change: transform;
+}
+
+.collection {
+  column-count: 8;
+  column-gap: 2px;
+  transition: 0.3s;
+}
+
+.collection_item {
+  overflow: hidden;
+}
+
+.collection_link {
+  /* height: 100%; */
+  margin: 2px;
+  overflow: hidden;
+}
+
+.collection_link:hover .collection_caption {
+  opacity: 1;
+}
+
+.collection_figure {
+  position: relative;
+  margin: 0;
+}
+
+.collection_image {
+  display: block;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.collection_image:hover {
+  transform: scale(1.1);
+}
+
+.collection_caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 25px 15px 15px;
+  width: 100%;
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  color: white;
+  opacity: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transition: 0.3s;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (max-width: 1280px) {
+  .collection {
+    column-count: 6;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .collection {
+    column-count: 4;
+  }
+}

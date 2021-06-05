@@ -157,7 +157,12 @@ function readAllStockItem()
     return $image_data;
 }
 
-function readStockItemByCategory($category) {
+function readStockItemByTitle($title)
+{
+}
+
+function readStockItemByCategory($category)
+{
     $image_data = array();
     $deleted_item = "@deleted_item";
 
@@ -181,11 +186,11 @@ function readStockItemByCategory($category) {
                     stock_item.image_id = image_category.image_id AND image_category.category_id = image_available_category.id
                 )
             WHERE
-                    stock_item.user_id = ?
+                image_available_category.category = ? AND NOT stock_item.user_id = ?
             ORDER BY
                 stock_item.id"
         );
-        $query->bind_param("s", $deleted_item);
+        $query->bind_param("ss", $category, $deleted_item);
         $query->execute() or die(mysqli_error($connection));
 
         $result = $query->get_result();
@@ -417,7 +422,7 @@ function updateStockItemByImageId($user_id, $judul, $deskripsi, $harga, $kategor
 function deleteStockItemByImageId($user_id, $image_id)
 {
     $deleted_item = "@deleted_item";
-    
+
     $connection = connect();
 
     if ($connection != null) {
@@ -581,3 +586,4 @@ function failedToConnect()
 {
     echo "Failed connecting to database";
 }
+?>
