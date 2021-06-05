@@ -8,6 +8,7 @@
   <title>Home</title>
   <link rel="stylesheet" href="navigation_bar_style.css" />
   <link rel="stylesheet" href="homePage_style.css" />
+  <link rel="stylesheet" href="asset/circle.css">
 </head>
 
 <body>
@@ -49,6 +50,26 @@
           </symbol>
         </svg>
       </div>
+
+      <div class="holder">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+    
     </div>
 
     <!-- Links -->
