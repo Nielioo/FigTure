@@ -563,7 +563,8 @@ function getTypeID($type)
 function validateCategory($category_list)
 {
     foreach ($category_list as $category) {
-        if ($category !== "3D") {
+        printf($category);
+        if ($category !== "3D" && $category !== "Food and Drink") {
             $category = ucfirst(strtolower($category));
         }
         $available_category = getCategoryList();
