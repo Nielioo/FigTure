@@ -46,48 +46,48 @@ nav a:hover {
   transition: color 0.3s;
 }
 
-.btnHighlight {
+nav .btnHighlight {
   background-color: #9fedd7;
   color: black;
   border-radius: 10px;
   transition: all 0.4s ease-in-out;
 }
 
-.btnHighlight:hover {
+nav .btnHighlight:hover {
   background-color: #009aa8;
   color: white;
   transition: background-color 0.3s, color 0.3s;
 }
 
-.btnDivider {
+nav .btnDivider {
   border-right: 1px solid black;
 }
 
-.logoImageNav {
+nav .logoImageNav {
   width: 50px;
   height: 50px;
   border-radius: 10px;
   float: left;
 }
 
-.logoTextNav {
+nav .logoTextNav {
   padding: 0 20px;
   float: left;
   margin-top: 12px;
   margin-bottom: 0;
 }
 
-ul {
+nav ul {
   list-style-type: none;
   float: right;
   margin-top: 15px;
 }
 
-li {
+nav ul li {
   float: right;
 }
 
-.clearFloat {
+nav .clearFloat {
   clear: both;
 }
 

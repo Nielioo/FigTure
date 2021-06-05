@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-    <link rel="stylesheet" href="navigation_bar_style.css">
+    <link rel="stylesheet" href="navigation_bar_style.css" />
     <link rel="stylesheet" href="homePage_style.css" />
   </head>
 
@@ -20,7 +20,7 @@
         require_once("websiteHeader_after.html");
     }
     ?>
-    <div class="clearFloat"></div>
+
     <div class="container">
       <div class="first">
         <h1 class="header-text">Get The Best Images from The Best Creators</h1>
