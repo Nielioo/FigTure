@@ -122,7 +122,7 @@ ul {
   margin: 0 auto;
   padding: 0 20px;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-gap: 10px;
   align-items: flex-start;
   justify-content: center;
@@ -151,6 +151,10 @@ footer h5 {
 }
 
 @media (max-width: 500px) {
+.links {
+  display: none;
+}
+
   .links .links-inner {
     grid-template-columns: 1fr;
   }

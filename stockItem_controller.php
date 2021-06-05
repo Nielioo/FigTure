@@ -159,6 +159,72 @@ function readAllStockItem()
 
 function readStockItemByTitle($title)
 {
+    $image_data = array();
+    $deleted_item = "@deleted_item";
+
+    $connection = connect();
+
+    if ($connection != null) {
+        $query = $connection->prepare(
+            "SELECT
+                stock_item.judul,
+                stock_item.deskripsi,
+                stock_item.harga,
+                stock_item.image_id,
+                image_file.gambar,
+                image_available_type.type,
+                image_available_category.category
+            FROM
+                (`stock_item`, `image_category`)
+            INNER JOIN image_file ON stock_item.image_id = image_file.id
+            INNER JOIN image_available_type ON stock_item.type_id = image_available_type.id
+            INNER JOIN image_available_category ON(
+                    stock_item.image_id = image_category.image_id AND image_category.category_id = image_available_category.id
+                )
+            WHERE
+                stock_item.judul = ? AND NOT stock_item.user_id = ?
+            ORDER BY
+                stock_item.id"
+        );
+        $query->bind_param("ss", $title, $deleted_item);
+        $query->execute() or die(mysqli_error($connection));
+
+        $result = $query->get_result();
+        if (!empty($result)) {
+            $row_count = 0;
+            while ($row = $result->fetch_assoc()) {
+                $data['judul'] = $row['judul'];
+                $data['deskripsi'] = $row['deskripsi'];
+                $data['harga'] = $row['harga'];
+                $data['image_id'] = $row['image_id'];
+                $data['gambar'] = $row['gambar'];
+                $data['type'] = $row['type'];
+                $data['category'] = array();
+                array_push($data['category'], $row['category']);
+
+                if ($row_count > 0) {
+                    if ($image_data[$row_count - 1]['gambar'] === $data['gambar']) {
+                        array_push($image_data[$row_count - 1]['category'], $row['category']);
+                        sort($image_data[$row_count - 1]['category']);
+                    } else {
+                        array_push($image_data, $data);
+                        $row_count++;
+                    }
+                } else {
+                    array_push($image_data, $data);
+                    $row_count++;
+                }
+            }
+        } else {
+            dataIsNull("image list");
+        }
+    } else {
+        failedToConnect();
+    }
+
+    close($connection);
+
+    return $image_data;
 }
 
 function readStockItemByCategory($category)
