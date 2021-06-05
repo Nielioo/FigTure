@@ -35,7 +35,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: red;
 }
 .header-text {
   text-align: center;
@@ -131,6 +130,18 @@ ul {
 
 .links li {
   line-height: 2.8;
+}
+
+footer {
+  display: block;
+  text-align: center;
+  color: white;
+  background-color: black;
+  padding: 20px;
+}
+
+footer h5 {
+  margin: 0;
 }
 
 @media (max-width: 700px) {
