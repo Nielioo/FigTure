@@ -116,6 +116,7 @@ ul {
   padding: 35px 0;
   font-size: 15px;
   line-height: 1.5;
+  z-index: -1;
 }
 
 .links-inner {
@@ -168,6 +169,7 @@ footer h5 {
 .holder {
   width: 500px;
   height: 250px;
+  margin-top: 40px;
   position: relative;
 }
 
@@ -176,6 +178,7 @@ footer h5 {
   position: absolute;
   bottom: 0;
   left: 50%;
+  right: 50%;
   transform: translateX(-50%);
   transform-origin: bottom center;
 }
