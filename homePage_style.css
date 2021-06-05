@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* 
 color palette:
 #026670 - dark green
@@ -91,3 +92,99 @@ body {
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }
+||||||| 47bfb33
+=======
+/* 
+color palette:
+#026670 - dark green
+#9fedd7 - light green
+#fef9c7 - light yellow
+#fce181 - yelow
+#edeae5 - light grey
+*/
+
+@import url("https://rsms.me/inter/inter.css");
+html {
+  font-family: "Inter", sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background-color: white;
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.first{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: red;
+  margin: auto;
+}
+.header-text{
+  text-align: center;
+}
+
+.search-form{
+  width: 60%;
+  display: flex;
+}
+.search{
+  width: 75%;
+  padding-right: 10px;
+}
+
+/* Menu Dropdown */
+
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+>>>>>>> 42e6d39e75b10293ebf5de38a1241f763b58299d
