@@ -60,7 +60,7 @@ h4 {
 }
 
 .collection_figure {
-  max-height: 700px;
+  max-height: 400px;
   margin: 20px;
   display: flex;
   justify-content: center;
@@ -76,6 +76,7 @@ h4 {
 }
 
 .image_purchase {
+  margin-top: 20px;
 }
 
 .purchase_link {
@@ -86,6 +87,7 @@ h4 {
   border-radius: 3px;
   text-align: center;
   text-decoration: none;
+  margin-top: 10px;
 }
 
 .purchase_link:hover {

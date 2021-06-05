@@ -51,7 +51,7 @@
                     </div>
                     <div class="image_purchase">
                         <label>Price</label><br />
-                        <label><?= $image['harga'] ?></label><br />
+                        <label>$<?= $image['harga'] ?></label><br />
                         <a href="#" class="purchase_link">Purchase image</a>
                     </div>
                 </div>
