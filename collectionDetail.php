@@ -44,14 +44,14 @@
                 </div>
                 <div class="right_container">
                     <div class="image_file">
-                        <label>File dimension</label><br />
-                        <label id="image_dimension"></label><br /><br />
-                        <label>File format</label><br />
+                        <h4>File dimension</h4>
+                        <label id="image_dimension"></label><br /><br /><br />
+                        <h4>File format</h4>
                         <label><?= $image['type'] ?></label><br />
                     </div>
                     <div class="image_purchase">
-                        <label>Price</label><br />
-                        <label>$<?= $image['harga'] ?></label><br />
+                        <h4>Price</h4>
+                        <label>$<?= $image['harga'] ?></label><br /><br />
                         <a href="#" class="purchase_link">Purchase image</a>
                     </div>
                 </div>
