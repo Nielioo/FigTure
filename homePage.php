@@ -5,11 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
+    <link rel="stylesheet" href="navigation_bar_style.css" />
     <link rel="stylesheet" href="homePage_style.css" />
   </head>
 
   <body>
-    <!-- <?php
+    <?php
     require_once("stockItem_controller.php");
     
     session_start();
@@ -18,7 +19,7 @@
     } else {
         require_once("websiteHeader_after.html");
     }
-    ?> -->
+    ?>
 
     <div class="container">
       <div class="first">
