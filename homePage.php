@@ -8,7 +8,6 @@
   <title>Home</title>
   <link rel="stylesheet" href="navigation_bar_style.css" />
   <link rel="stylesheet" href="homePage_style.css" />
-  <link rel="stylesheet" href="asset/circle.css">
 </head>
 
 <body>
