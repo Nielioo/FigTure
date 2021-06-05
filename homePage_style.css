@@ -116,7 +116,7 @@ ul {
   padding: 35px 0;
   font-size: 15px;
   line-height: 1.5;
-  z-index: -1;
+  z-index: 20;
 }
 
 .links-inner {
@@ -128,6 +128,7 @@ ul {
   grid-gap: 10px;
   align-items: flex-start;
   justify-content: center;
+  z-index: 20;
 }
 
 .links li {
@@ -184,14 +185,14 @@ footer h5 {
 }
 
 .circle:nth-child(1) {
-  size: 25px; 
+  size: 4px; 
   background: #FFA7A3; 
   border-bottom: none;
-  border-radius: 25px 25px 0 0;
-  width: 25px;
-  height: 12.5px; /*(width/2)*/
-  z-index: 15;
-  animation: circle-1 10s infinite ease-in-out;
+  border-radius: 4px 4px 0 0;
+  width: 4px;
+  height: 2px; /*(width/2)*/
+  z-index: -16;
+  animation: circle-1 5s infinite ease-in-out;
 }
 @keyframes circle-1 {
   0% {
@@ -209,7 +210,7 @@ footer h5 {
   border-radius: 31px 31px 0 0;
   width: 31px;
   height: 15.5px;
-  z-index: 14;
+  z-index: -15;
   animation: circle-2 10s infinite ease-in-out;
 }
 @keyframes circle-2 {
@@ -228,7 +229,7 @@ footer h5 {
   border-radius: 62px 62px 0 0;
   width: 62px;
   height: 31px;
-  z-index: 13;
+  z-index: -14;
   animation: circle-3 10s infinite ease-in-out;
 }
 @keyframes circle-3 {
@@ -247,7 +248,7 @@ footer h5 {
     border-radius: 93px 93px 0 0;
     width: 93px;
     height: 46.5px;
-    z-index: 12;
+    z-index: -13;
     animation: circle-4 10s infinite ease-in-out;
   }
   @keyframes circle-4 {
@@ -266,7 +267,7 @@ footer h5 {
     border-radius: 122px 122px 0 0;
     width: 122px;
     height: 61px;
-    z-index: 11;
+    z-index: -12;
     animation: circle-5 10s infinite ease-in-out;
   }
   @keyframes circle-5 {
@@ -285,7 +286,7 @@ footer h5 {
     border-radius: 155px 155px 0 0;
     width: 155px;
     height: 77.5px;
-    z-index: 10;
+    z-index: -11;
     animation: circle-6 10s infinite ease-in-out;
   }
   @keyframes circle-6 {
@@ -304,7 +305,7 @@ footer h5 {
     border-radius: 186px 186px 0 0;
     width: 186px;
     height: 93px;
-    z-index: 9;
+    z-index: -10;
     animation: circle-7 10s infinite ease-in-out;
   }
   @keyframes circle-7 {
@@ -323,7 +324,7 @@ footer h5 {
     border-radius: 217px 217px 0 0;
     width: 217px;
     height: 108.5px;
-    z-index: 8;
+    z-index: -9;
     animation: circle-8 10s infinite ease-in-out;
   }
   @keyframes circle-8 {
@@ -342,7 +343,7 @@ footer h5 {
     border-radius: 248px 248px 0 0;
     width: 248px;
     height: 124px;
-    z-index: 7;
+    z-index: -8;
     animation: circle-9 10s infinite ease-in-out;
   }
   @keyframes circle-9 {
@@ -361,7 +362,7 @@ footer h5 {
     border-radius: 279px 279px 0 0;
     width: 279px;
     height: 139.5px;
-    z-index: 6;
+    z-index: -7;
     animation: circle-10 10s infinite ease-in-out;
   }
   @keyframes circle-10 {
@@ -380,7 +381,7 @@ footer h5 {
     border-radius: 310px 310px 0 0;
     width: 310px;
     height: 155px;
-    z-index: 5;
+    z-index: -6;
     animation: circle-11 10s infinite ease-in-out;
   }
   @keyframes circle-11 {
@@ -399,7 +400,7 @@ footer h5 {
     border-radius: 341px 341px 0 0;
     width: 341px;
     height: 170.5px;
-    z-index: 4;
+    z-index: -5;
     animation: circle-12 10s infinite ease-in-out;
   }
   @keyframes circle-12 {
@@ -418,7 +419,7 @@ footer h5 {
     border-radius: 372px 372px 0 0;
     width: 372px;
     height: 186px;
-    z-index: 3;
+    z-index: -4;
     animation: circle-13 10s infinite ease-in-out;
   }
   @keyframes circle-13 {
@@ -437,7 +438,7 @@ footer h5 {
     border-radius: 403px 403px 0 0;
     width: 403px;
     height: 201.5px;
-    z-index: 2;
+    z-index: -3;
     animation: circle-14 10s infinite ease-in-out;
   }
   @keyframes circle-14 {
@@ -456,7 +457,7 @@ footer h5 {
     border-radius: 434px 434px 0 0;
     width: 434px;
     height: 217px;
-    z-index: 1;
+    z-index: -2;
     animation: circle-15 10s infinite ease-in-out;
   }
   @keyframes circle-15 {
@@ -475,7 +476,7 @@ footer h5 {
     border-radius: 465px 465px 0 0;
     width: 465px;
     height: 232.5px;
-    z-index: 0;
+    z-index: -1;
     animation: circle-16 10s infinite ease-in-out;
   }
   @keyframes circle-16 {
