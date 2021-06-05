@@ -95,6 +95,10 @@
         <?php
         }
         ?>
+        <ul>
+        <li><a href="collectionCategory.php?category=<?= $category[25] ?>"><?= $category[25] ?></a></li>
+        <li><a href="collectionCategory.php?category=<?= $category[26] ?>"><?= $category[26] ?></a></li>
+        </ul>
       </div>
     </section>
   </div>
