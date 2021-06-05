@@ -175,6 +175,7 @@ body {
   padding: 0;
   background: #f1eee9;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  list-style-type: none;
 }
 .nav ul li {
   padding: 10px;
