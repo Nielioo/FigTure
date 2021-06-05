@@ -8,6 +8,7 @@
     <title>Edit Profile</title>
     <link rel="stylesheet" href="navigation_bar_style.css">
     <link rel="stylesheet" href="editProfilePage_style.css">
+    <script src="http://code.jquery.com/jquery.js"></script>
 </head>
 
 <body>
@@ -57,7 +58,7 @@
                     <p>Creator</p>
                 </div>
 
-                <input type="submit" class="form-button animation a9" name="update" value="SAVE">
+                <input onclick="updatedAlert()" type="submit" class="form-button animation a9" name="update" value="SAVE">
 
                 <p class="back animation a10"><a href="profilePage.php">Back to Profile Page</a></p>
             </form>
@@ -97,6 +98,11 @@
 
     </div>
 
+    <script>
+        function updatedAlert() {
+            alert("Profile updated!");
+        }
+    </script>
 
 </body>
 

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="navigation_bar_style.css">
     <link rel="stylesheet" href="profilePage_style.css">
     <script src="profilePage.js" defer></script>
+    <script src="http://code.jquery.com/jquery.js"></script>
 </head>
 
 <body>
@@ -166,7 +167,7 @@
                                     <td>
                                         <p>Delete Account</p>
                                     </td>
-                                    <td><button class="next_button"><a href="deleteProfilePage.php">></a></button></td>
+                                    <td><button onclick="deletedAlert()" class="next_button"><a href="deleteProfilePage.php">></a></button></td>
                                 </tr>
                             </table>
                             <div class="warn">
@@ -184,6 +185,12 @@
         </div>
 
     </div>
+
+    <script>
+        function deletedAlert() {
+            alert("Account successfully deleted!");
+        }
+    </script>
 
 </body>
 

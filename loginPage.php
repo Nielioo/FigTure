@@ -8,6 +8,7 @@
     <title>Login Page</title>
     <link rel="stylesheet" href="navigation_bar_style.css">
     <link rel="stylesheet" href="login_register_style.css">
+    <script src="http://code.jquery.com/jquery.js"></script>
 </head>
 
 <body>
@@ -53,10 +54,9 @@
                 if (!empty($data)) {
                     session_start();
                     $_SESSION['user_id'] = $data['user_id'];
-                    // echo "[session] user_id = " . $_SESSION['user_id'];
                     header("location: profilePage.php");
                 } else {
-                    // echo "user_id not found";
+                    echo "<br><br>warning: user not found";
                 }
             }
             ?>
@@ -64,7 +64,14 @@
         </div>
     </div>
 
-
+    <script>
+        function loginSuccessAlert() {
+            alert("Login Successful!");
+        }
+        function loginFailedAlert() {
+            alert("Login Failed! Wrong email or password");
+        }
+    </script>
 
 </body>
 

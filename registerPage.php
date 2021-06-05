@@ -8,6 +8,7 @@
     <title>Register Page</title>
     <link rel="stylesheet" href="navigation_bar_style.css">
     <link rel="stylesheet" href="login_register_style.css">
+    <script src="http://code.jquery.com/jquery.js"></script>
 </head>
 
 <body>
@@ -46,7 +47,7 @@
                     <p>Creator</p>
                 </div>
 
-                <input type="submit" class="form-button animation a9" name="create" value="REGISTER">
+                <input onclick="registeredAlert()" type="submit" class="form-button animation a9" name="create" value="REGISTER">
 
                 <p class="reglog animation a10">Already have an account? <a href="loginPage.php">Login Here</a></p>
             </form>
@@ -68,6 +69,12 @@
 
         </div>
     </div>
+
+    <script>
+        function registeredAlert() {
+            alert("Account Registered! You can login now!");
+        }
+    </script>
 
 </body>
 
