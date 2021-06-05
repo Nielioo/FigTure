@@ -33,7 +33,7 @@
   <div class="container">
     <div class="first">
       <h1 class="header-text">Get The Best Images from The Best Creators</h1>
-      <div>
+      <div class="search-box">
         <form class="search-form" method="GET">
           <input type="search" name="title" value="" placeholder="Search" class="search-input" />
           <button type="submit" name="submit" class="search-button">
@@ -95,6 +95,10 @@
         <?php
         }
         ?>
+        <ul>
+        <li><a href="collectionCategory.php?category=<?= $category[25] ?>"><?= $category[25] ?></a></li>
+        <li><a href="collectionCategory.php?category=<?= $category[26] ?>"><?= $category[26] ?></a></li>
+        </ul>
       </div>
     </section>
   </div>
