@@ -33,7 +33,7 @@ if (empty($_SESSION['user_id'])) {
 
     if (count($image_list) === 0) {
     ?>
-        <h4 class="notFound">There is no post for this category</h4>
+        <h4 class="notFound">No post found</h4>
     <?php
     } else {
     ?>

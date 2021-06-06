@@ -30,25 +30,34 @@ if (empty($_SESSION['user_id'])) {
     }
 
     $image_list = readStockItemByCategory($category);
+
+    if (count($image_list) === 0) {
     ?>
-    <div class="page">
-        <div class="collection">
-            <?php
-            foreach ($image_list as $image) {
-            ?>
-                <div class="collection_item">
-                    <a href="collectionDetail.php?image_id=<?= $image['image_id'] ?>" class="collection_link">
-                        <figure class="collection_figure">
-                            <img src="<?= $image['gambar'] ?>" alt="<?= $image['judul'] ?>" class="collection_image">
-                            <figcaption class="collection_caption"><?= $image['judul'] ?></figcaption>
-                        </figure>
-                    </a>
-                </div>
-            <?php
-            }
-            ?>
+        <h4 class="notFound">There is no post for this category</h4>
+    <?php
+    } else {
+    ?>
+        <div class="page">
+            <div class="collection">
+                <?php
+                foreach ($image_list as $image) {
+                ?>
+                    <div class="collection_item">
+                        <a href="collectionDetail.php?image_id=<?= $image['image_id'] ?>" class="collection_link">
+                            <figure class="collection_figure">
+                                <img src="<?= $image['gambar'] ?>" alt="<?= $image['judul'] ?>" class="collection_image">
+                                <figcaption class="collection_caption"><?= $image['judul'] ?></figcaption>
+                            </figure>
+                        </a>
+                    </div>
+                <?php
+                }
+                ?>
+            </div>
         </div>
-    </div>
+    <?php
+    }
+    ?>
 </body>
 
 </html>
