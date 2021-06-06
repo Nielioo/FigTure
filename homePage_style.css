@@ -156,16 +156,13 @@ footer h5 {
 }
 
 @media (max-width: 500px) {
-  .links {
-    /* display: none; */
-  }
-
-  .links .links-inner {
-    grid-template-columns: 1fr;
-  }
-
   .links .links-inner ul {
     margin-bottom: 20px;
+  }
+
+  .holder {
+    width: 300px;
+    height: 150px;
   }
 }
 
