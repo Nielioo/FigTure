@@ -2,7 +2,7 @@
   <img class="logoImageNav" src="asset/logo.jpg" />
   <h2 class="logoTextNav">FigTure</h2>
   <ul>
-    <li><a class="btnHighlight" href="logoutPage.php">Log Out</a></li>
+    <li><a onclick="logoutAlert" class="btnHighlight" href="logoutPage.php">Log Out</a></li>
     <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
     <li><a class="btnDivider" href="profilePage.php">Profile</a></li>
     <li><a href="collection.php">Collection</a></li>
@@ -14,8 +14,14 @@
       <a href="homePage.php">Home</a>
       <a href="collection.php">Collection</a>
       <a href="profilePage.php">Profile</a>
-      <a class="btnHighlight" href="logoutPage.php">Log Out</a>
+      <a onclick="logoutAlert" class="btnHighlight" href="logoutPage.php">Log Out</a>
     </div>
   </div>
   <div class="clearFloat"></div>
 </nav>
+
+<script>
+  function logoutAlert() {
+      alert("Log Out Successful!");
+  }
+</script>

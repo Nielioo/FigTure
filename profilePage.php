@@ -61,33 +61,16 @@
         <div class="main-body">
             <div class="left">
                 <div class="profile-side">
-                    <table cellspacing=0 border="0" class="profile-info">
-                        <tr>
-                            <th>
-                                <p>Nama</p>
-                            </th>
-                            <td>
-                                <p><?= $readProfile['nama'] ?></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <p>Email</p>
-                            </th>
-                            <td>
-                                <p><?= $readProfile['email'] ?></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th style="vertical-align: top;">
-                                <p>Bio</p>
-                            </th>
-                            <td>
-                                <p class="bio">The purpose of our live is to be <b>HAPPY</b>!
-                                </p>
-                            </td>
-                        </tr>
-                    </table>
+                    <div class="profile-info">
+                        <p class="profile-header-text"><b>Nama</b></p>
+                        <p class="profile-text"><?= $readProfile['nama'] ?></p>
+
+                        <p class="profile-header-text"><b>Email</b></p>
+                        <p class="profile-text"><?= $readProfile['email'] ?></p>
+
+                        <p class="profile-header-text bio-header"><b>Bio</b></p>
+                        <p class="profile-text bio">The purpose of our live is to be <b>HAPPY</b>!</p>
+                    </div>
                 </div>
             </div>
 
