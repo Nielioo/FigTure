@@ -43,6 +43,7 @@ img {
 .collection_figure {
   position: relative;
   margin: 0;
+  margin-bottom: 2px;
 }
 
 .collection_image {
