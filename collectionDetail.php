@@ -14,7 +14,7 @@
 <body>
     <?php
     require_once("stockItem_controller.php");
-    
+
     session_start();
     if (empty($_SESSION['user_id'])) {
         require_once("websiteHeader.html");
@@ -50,6 +50,8 @@
                         <label><?= $image['type'] ?></label><br />
                     </div>
                     <div class="image_purchase">
+                        <hr />
+                        <br />
                         <h4>Price</h4>
                         <label>$<?= $image['harga'] ?></label><br /><br />
                         <a href="#" class="purchase_link">Purchase image</a>
