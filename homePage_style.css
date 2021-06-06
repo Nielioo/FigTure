@@ -160,7 +160,7 @@ footer h5 {
     margin-bottom: 20px;
   }
 
-  .circle:nth-child(15), .circle:nth-child(16) {
+  .circle:nth-child(13), .circle:nth-child(14), .circle:nth-child(15), .circle:nth-child(16) {
     display: none;
   }
 }
