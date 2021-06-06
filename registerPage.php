@@ -64,6 +64,7 @@
                 $tipe_user = $_POST['tipe_user'];
 
                 createProfile($user_id, $profile_picture_name, $profile_picture_tmp_name, $mime, $nama, $email, $password, $tipe_user);
+                header("location: loginPage.php");
             }
             ?>
 
