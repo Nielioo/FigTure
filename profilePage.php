@@ -173,6 +173,10 @@
         function deletedAlert() {
             alert("Account successfully deleted!");
         }
+
+        function logoutAlert() {
+            alert("Log Out Successful!");
+        }
     </script>
 
 </body>
