@@ -85,55 +85,64 @@
                 <div class="clearFloat"></div>
                 <div class="tab-content">
                     <div id="post" data-tab-content class="active">
-                        <div class="item_list">
-                            <?php
-                            $image_list = readStockItemByUserId($user_id);
-                            foreach ($image_list as $image) {
-                                $category_list = implode(", ", $image['category']);
-                            ?>
-                                <div class="item_data">
-                                    <div class="item_image"><img src="<?= $image['gambar'] ?>"></div>
+                        <?php
+                        $image_list = readStockItemByUserId($user_id);
+                        $listSize = count($image_list);
+                        if ($listSize === 0) {
+                        ?>
+                            <h4>There is No Post for Now</h4>
+                        <?php
+                        } else {
+                        ?>
+                            <div class="item_list">
+                                <?php
+                                foreach ($image_list as $image) {
+                                    $category_list = implode(", ", $image['category']);
+                                ?>
+                                    <div class="item_data">
+                                        <div class="item_image"><img src="<?= $image['gambar'] ?>"></div>
 
-                                    <div class="item_detail">
-                                        <h4 class="item_title"><?= $image['judul'] ?>
-                                            <hr />
-                                        </h4>
-                                        <div class="item_price">
-                                            <h5 class="price_text">Price</h5>
-                                            <label>$<?= $image['harga'] ?></label>
-                                            <hr />
+                                        <div class="item_detail">
+                                            <h4 class="item_title"><?= $image['judul'] ?>
+                                                <hr />
+                                            </h4>
+                                            <div class="item_price">
+                                                <h5 class="price_text">Price</h5>
+                                                <label>$<?= $image['harga'] ?></label>
+                                                <hr />
+                                            </div>
+                                            <div class="item_type">
+                                                <h5 class="type_text">Image format</h5>
+                                                <label><?= $image['type'] ?></label>
+                                                <hr />
+                                            </div>
+                                            <div class="item_category">
+                                                <h5 class="category_text">Categories</h5>
+                                                <label><?= $category_list ?></label>
+                                            </div>
                                         </div>
-                                        <div class="item_type">
-                                            <h5 class="type_text">Image format</h5>
-                                            <label><?= $image['type'] ?></label>
-                                            <hr />
-                                        </div>
-                                        <div class="item_category">
-                                            <h5 class="category_text">Categories</h5>
-                                            <label><?= $category_list ?></label>
+
+                                        <div class="item_option">
+                                            <a href="collectionDetail.php?image_id=<?= $image['image_id'] ?>" class="item_view">
+                                                <div class="view_text">View</div>
+                                            </a>
+                                            <a href="editImagePage.php?image_id=<?= $image['image_id'] ?>" class="item_edit">
+                                                <div class="edit_text">Edit</div>
+                                            </a>
+                                            <a href="deleteImagePage.php?image_id=<?= $image['image_id'] ?>" class="item_delete">
+                                                <div class="delete_text">Delete</div>
+                                            </a>
                                         </div>
                                     </div>
-
-                                    <div class="item_option">
-                                        <a href="collectionDetail.php?image_id=<?= $image['image_id'] ?>" class="item_view">
-                                            <div class="view_text">View</div>
-                                        </a>
-                                        <a href="editImagePage.php?image_id=<?= $image['image_id'] ?>" class="item_edit">
-                                            <div class="edit_text">Edit</div>
-                                        </a>
-                                        <a href="deleteImagePage.php?image_id=<?= $image['image_id'] ?>" class="item_delete">
-                                            <div class="delete_text">Delete</div>
-                                        </a>
-                                    </div>
-                                </div>
                             <?php
+                                }
                             }
                             ?>
-                        </div>
+                            </div>
                     </div>
 
                     <div id="review" data-tab-content>
-                        <h4>There is No Reviews for Now</h4>
+                        <h4>There is No Review for Now</h4>
                     </div>
 
                     <div id="setting" data-tab-content>
