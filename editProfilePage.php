@@ -15,6 +15,7 @@
     <?php
 
     require_once("profile_controller.php");
+    require_once("stockItem_controller.php");
     require_once("websiteHeader_after.html");
 
     ?>
@@ -79,9 +80,11 @@
                     $mime = mime_content_type($_FILES['profile_picture']['tmp_name']);
 
                     updateProfile($user_id, $newUser_id, $profile_picture_name, $profile_picture_tmp_name, $mime, $nama, $email, $password, $tipe_user);
+                    updateUserId($user_id, $newUser_id);
                     $_SESSION['user_id'] = $newUser_id;
                 } else {
                     updateProfile_noPict($user_id, $newUser_id, $nama, $email, $password, $tipe_user);
+                    updateUserId($user_id, $newUser_id);
                     $_SESSION['user_id'] = $newUser_id;
                 }
 

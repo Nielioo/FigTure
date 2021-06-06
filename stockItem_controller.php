@@ -639,6 +639,26 @@ function getCategoryID($category_list)
     return $category_id_list;
 }
 
+function updateUserId($user_id, $new_user_id)
+{
+    $connection = connect();
+
+    if ($connection != null) {
+        if (!is_null($user_id) && !is_null($new_user_id)) {
+            // Update user id to new user id
+            $query = $connection->prepare("UPDATE `stock_item` SET `user_id`=? WHERE `user_id`=?");
+            $query->bind_param("ss", $new_user_id, $user_id);
+            $query->execute() or die(mysqli_error($connection));
+        } else {
+            dataIsNull("user id");
+        }
+    } else {
+        failedToConnect();
+    }
+
+    close($connection);
+}
+
 function dataIsNull($string)
 {
     echo "Some " . $string . " data are NULL";
