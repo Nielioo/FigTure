@@ -68,7 +68,7 @@
 
             <br />
 
-            <label class="animation a6">Kategori : </label><br />
+            <label class="animation a6">Categories : </label><br />
             <div class="category animation a7">
 
                 <?php
