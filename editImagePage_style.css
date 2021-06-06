@@ -68,6 +68,7 @@ body {
 
 .editImage img {
     max-height: 200px;
+    max-width: 100%;
 }
 
 .category {
@@ -78,7 +79,7 @@ body {
 
 .checkbox {
   position: relative;
-  width: 150px;
+  width: 130px;
   height: 50px;
   margin: 5px;
   float: left;
