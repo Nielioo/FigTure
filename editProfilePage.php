@@ -40,10 +40,10 @@
             </div>
 
             <form class="form" action="editProfilePage.php" method="post" enctype="multipart/form-data">
-                <input type="text" class="form-field animation a3" name="user_id" value="<?= $readProfile['user_id'] ?>">
-                <input type="text" class="form-field animation a4" name="nama" value="<?= $readProfile['nama'] ?>">
-                <input type="email" class="form-field animation a5" name="email" value="<?= $readProfile['email'] ?>">
-                <input type="password" class="form-field animation a6" name="password" value="<?= $readProfile['password'] ?>">
+                <input type="text" class="form-field animation a3" name="user_id" value="<?= $readProfile['user_id'] ?>" placeholder="User ID">
+                <input type="text" class="form-field animation a4" name="nama" value="<?= $readProfile['nama'] ?>" placeholder="Your Name">
+                <input type="email" class="form-field animation a5" name="email" value="<?= $readProfile['email'] ?>" placeholder="Email Address">
+                <input type="password" class="form-field animation a6" name="password" value="<?= $readProfile['password'] ?>" placeholder="Password">
 
                 <div class="setProfilePicture animation a7">
                     <p>Change Profile Picture:&nbsp;&nbsp;</p>
